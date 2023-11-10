@@ -1,10 +1,10 @@
-package qub.chronokill.sb;
+package qub.chronokill.springapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SbApplicationTests {
+class SpringApplicationTests {
 
     @Test
     void contextLoads() {
