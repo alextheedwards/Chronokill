@@ -7,8 +7,7 @@ const Login = () => {
 			<h1>Login</h1>
 
 			<Link href="/">Home</Link>
-			<Link href="/main">Main</Link>
-			<Link href="/dashboard">Page That Doesn't Exist</Link>
+			<Link href="/mainmenu">Main</Link>
 		</div> 
 	)
 }
