@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { TextEngine } from '../../components'
 
-const Dashboard = () => {
+export const Dashboard = () => {
 	
 	return (
 		<div>

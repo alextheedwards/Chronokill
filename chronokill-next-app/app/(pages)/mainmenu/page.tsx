@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const MainMenu = () => {
+export const MainMenu = () => {
 	
 	return (
 		<div>

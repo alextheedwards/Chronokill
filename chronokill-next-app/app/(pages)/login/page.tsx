@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const Login = () => {
+export const Login = () => {
 
 	return (
 		<div>
