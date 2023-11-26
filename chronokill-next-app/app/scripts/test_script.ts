@@ -1,7 +1,7 @@
 
 export const test_script: string[] = [
-  "Test dialogue.",
-  "Additional test dialogue but longer",
+  "Test.",
+  "Additional test.",
   "Reminder to use an array with a [<command>, <resource>] structure for actions in the script."
 ]
 

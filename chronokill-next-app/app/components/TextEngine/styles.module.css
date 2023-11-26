@@ -1,0 +1,12 @@
+
+.textEngine {
+  display: grid;
+  grid-template-columns: 10vw 1fr 10vw;
+
+  min-height: 100%;
+  background-color: rgba(20, 20, 20, 0.2);
+}
+
+.textBoxWrapper {
+  background-color: rgba(40, 40, 40, 0.2);
+}

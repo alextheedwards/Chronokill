@@ -1,18 +1,17 @@
-import Link from 'next/link'
 
-import { TextEngine } from '../../components'
+import { TextEngine, TopPanel } from '../../components'
+
+import styles from './styles.module.css'
 
 export const Dashboard = () => {
 	
 	return (
-		<div>
-			<div>Top Panel</div>
-      <div>Dashboard</div>
-      <TextEngine />
+		<div className={styles.dashboard}>
+      <TopPanel />
 
-			<Link href="/">Home</Link>
-			<Link href="/login">Login</Link>
-			<Link href="/nopage">Page That Doesn't Exist</Link>
+      <div className={styles.centrePanelWrapper}>Dashboard</div>
+
+      <TextEngine />
 		</div> 
 	)
 }

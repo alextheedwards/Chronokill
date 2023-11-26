@@ -9,7 +9,7 @@ export const MainMenu = () => {
 			<Link href="/">Root</Link>
 			<Link href="/login">Login</Link>
 			<Link href="/dashboard">Dashboard</Link>
-			<Link href="/nopage">Page That Doesn't Exist</Link>
+			<Link href="/nopage">Page That Doesn&apos;t Exist</Link>
 		</div> 
 	)
 }
