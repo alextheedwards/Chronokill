@@ -7,11 +7,9 @@ export const Dashboard = () => {
 	
 	return (
 		<div className={styles.dashboard}>
-      <TopPanel />
-
-      <div className={styles.centrePanelWrapper}>Dashboard</div>
-
-      <TextEngine />
+			<TopPanel />
+			<div className={styles.centrePanelWrapper}>Dashboard</div>
+			<TextEngine />
 		</div> 
 	)
 }
