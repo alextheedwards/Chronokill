@@ -1,6 +1,8 @@
 
-export const FetchService = async () => {
-  const res = await fetch('http://localhost:8080/greet')
+export const FetchService = async (endpoint: string) => {
+
+  //TODO: replace the hardcoded server address with one from a .env file
+  const res = await fetch(`http://localhost:8080${endpoint}`)
   
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
