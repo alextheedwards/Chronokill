@@ -3,15 +3,14 @@ import { TextEngine, TopPanel } from '../../components'
 
 import styles from './styles.module.css'
 
-export const Dashboard = () => {
+export const Ingame = () => {
 	
 	return (
-		<div className={styles.dashboard}>
+		<div className={styles.ingameUI}>
 			<TopPanel />
-			<div className={styles.centrePanelWrapper}>Dashboard</div>
 			<TextEngine />
 		</div> 
 	)
 }
   
-export default Dashboard
+export default Ingame

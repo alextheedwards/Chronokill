@@ -1,12 +1,12 @@
 // import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Dashboard from './page';
+import Ingame from './page';
 import '@testing-library/jest-dom'
 
 describe('Dashboard Component', () => {
   it('renders TopPanel and TextEngine components', () => {
-    // Render the Dashboard component
-    render(<Dashboard />);
+    // Render the Ingame page
+    render(<Ingame />);
     
     // Check if TopPanel is rendered
     const homeLink = screen.getByText('Home');

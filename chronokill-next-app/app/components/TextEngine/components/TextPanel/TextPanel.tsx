@@ -32,7 +32,7 @@ export const TextPanel = ({
 }, [index, displayText])
 
   return (
-    <div className={styles.text}>{displayedText}</div>
+    <div className={styles.textPanel}>{displayedText}</div>
   )  
 }
 

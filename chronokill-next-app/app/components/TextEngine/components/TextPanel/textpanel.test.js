@@ -2,7 +2,7 @@ import { render, waitFor } from '@testing-library/react';
 import {TextPanel} from './TextPanel';
 import '@testing-library/jest-dom'
 
-describe('Dashboard Component', () => {
+describe('Ingame Page', () => {
   it('renders TextPanel components', () => {
     const {container} = render(<TextPanel />);
     

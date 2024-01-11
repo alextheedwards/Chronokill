@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Dashboard, { Login, MainMenu } from './page';
+import { MainMenu } from './page';
 import '@testing-library/jest-dom'
 
 describe('Main Menu Component', () => {
@@ -11,13 +11,13 @@ describe('Main Menu Component', () => {
     const mainMenuHeader = screen.getByText('Main Menu');
     const rootLink = screen.getByText('Root');
     const loginLink = screen.getByText('Login');
-    const dashboardLink = screen.getByText('Dashboard');
+    const ingameLink = screen.getByText('Play Game');
     const nopageLink = screen.getByText('Page That Doesn\'t Exist');
     
     expect(mainMenuHeader).toBeInTheDocument();
     expect(rootLink).toBeInTheDocument();
     expect(loginLink).toBeInTheDocument();
-    expect(dashboardLink).toBeInTheDocument();
-    expect(dashboardLink).toBeInTheDocument();
+    expect(ingameLink).toBeInTheDocument();
+    expect(nopageLink).toBeInTheDocument();
   });
 });
