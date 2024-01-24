@@ -1,17 +1,36 @@
 import { Dispatch, SetStateAction } from "react"
 
 import { ScriptStep } from '../../../interfaces'
-import { IncrementScriptStep, DecrementScriptStep } from '../services'
+import { SetScriptStep } from '../services'
 
-export const KeyEvents = (event: KeyboardEvent, setScriptStep: Dispatch<SetStateAction<ScriptStep>>): void => {
-  switch (event.key) {
-    case "ArrowRight":
-      IncrementScriptStep(setScriptStep)
-      break;
-    case "ArrowLeft":
-      DecrementScriptStep(setScriptStep)
-      break;
-  } 
+export const UserEvents = (
+  event: KeyboardEvent | MouseEvent, 
+  setScriptStep: Dispatch<SetStateAction<ScriptStep>>
+): void => {
+  if(event instanceof KeyboardEvent) {
+    switch (event.key) {
+      case " ":
+      case "Enter":
+      case "ArrowRight":
+        SetScriptStep(setScriptStep, "increment")
+        break
+      case "ArrowLeft":
+        SetScriptStep(setScriptStep, "decrement")
+        break
+    } 
+
+    return
+  }
+
+  if(event instanceof MouseEvent) {
+    switch (event.button) {
+      case 0:
+        SetScriptStep(setScriptStep, "increment")
+        break
+    } 
+
+    return
+  }
 }
 
-export default KeyEvents
+export default UserEvents

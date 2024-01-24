@@ -1,9 +1,9 @@
-import { ScriptTypes } from "../types"
+import { SceneScript } from "../types"
 
 export interface ScriptStep {
   step: number,
   direction: string,
-  scene: ScriptTypes[]
+  scene: SceneScript | undefined
 }
 
 export default ScriptStep

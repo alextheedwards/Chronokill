@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import styles from './styles.module.css'
 
@@ -26,7 +26,7 @@ export const TextPanel = ({
     }
 
     if (index < displayText.length) {
-        const timer = setTimeout(charDraw, 50)
+        const timer = setTimeout(charDraw, 20)
         return () => clearTimeout(timer)
     }
 }, [index, displayText])

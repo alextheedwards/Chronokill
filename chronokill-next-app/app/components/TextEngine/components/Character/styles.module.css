@@ -1,0 +1,36 @@
+
+.character {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+
+  /* These will probably need to be brought out into their own
+  class at some point if you want to change char size */
+  object-fit: cover;
+  height: 60%;
+  width: min-content;
+}
+
+.right {
+  right: 0;
+  margin-right: 100px;
+}
+
+.centre-right {
+  right: 0;
+  margin-right: 30vw;
+}
+
+.left {
+  left: 0;
+  margin-left: 100px;
+}
+
+.centre-left {
+  left: 0;
+  margin-left: 30vw;
+}
+
+.mirror {
+  transform: scaleX(-1);
+}
