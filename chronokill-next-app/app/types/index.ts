@@ -1,3 +1,7 @@
 export { type ActionImageArray } from './ActionImageArray'
 export { type ActionCharacterArray } from './ActionCharacterArray'
-export { type SceneScript} from './SceneScript'
+export { type SceneScript } from './SceneScript'
+export { type ActionDecisionArray } from './ActionDecisionArray'
+export { type DecisionSelection } from './DecisionSelection'
+export { type ActionCheckArray } from './ActionCheckArray'
+export { type CheckFunction } from './CheckFunction'

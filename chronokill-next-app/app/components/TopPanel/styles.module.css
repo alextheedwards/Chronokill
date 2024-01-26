@@ -1,17 +1,31 @@
 
 .topPanel {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-
+  justify-items: center;
   height: 100%;
-  background-color: rgba(20, 20, 20, 0.2);
+  border-bottom: 4px solid #232D47;
+  background: #ACC3FF;
 }
 
-.buttonWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 20px;
+.dateWrapper {
+  color: #000;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+}
 
-  width: min-content;
-  margin: 0 10px;
+.titleWrapper {
+  color: #000;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.burgerMenuArea {
+  color: #000;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
 }

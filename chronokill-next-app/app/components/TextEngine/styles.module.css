@@ -17,9 +17,8 @@
 .textPanelWrapper {
   position: absolute;
   bottom: 0;
-  display: grid;
-  grid-template-columns: 10vw 1fr 10vw;
 
   height: 340px;
   width: 100vw;
+  z-index: 2;
 }

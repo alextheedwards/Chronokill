@@ -19,22 +19,71 @@ const TestCharDupe: SceneCharacter = {
   styles: ["left", "mirror"]
 }
 
+const decision1: string[] = [
+  "Yes",
+  "No"
+]
+
+const decision2: string[] = [ 
+  "Mihi Est", 
+  "Imperare",
+  "Orbi Universo"
+]
+
+export const test_script_answers: any = {
+  decision1: undefined,
+  decision2: undefined
+}
+
 export const test_script: SceneScript = [
+  "Time to load background.",
+
   ["bg", placeholder_test_image],
+
+  "Time to load a character.",
+
   ["char", TestChar],
 
-  "Test.",
-  "Additional test.",
+  "Lets ask a question.",
+
+  ["qa", "decision1", decision1],
+
+  "Lets change background to a bigger image and add a new character.",
 
   ["bg", placeholder_2560x1440],
   ["char", TestCharDupe],
 
-  "Reminder to use an array with a [<command>, <resource>] structure for actions in the script.",
+  "Time for a second question with more options.",
+
+  ["qa", "decision2", decision2],
+
+  "Check time",
+
+  ["check", () => test_script_answers.decision1 === decision1[0]],
+  "Text that only renders if you selected yes!",
+  ["check", () => test_script_answers.decision1 === decision1[1]],
+  "Text that only renders if you selected no!",
+  ["rcheck"],
+
   "Long text that is very long so that I can see how the text will wrap in the text box or not without me making any changes to make it fit.",
 
   ["rchar", TestChar],
 
-  "Begone."
+  "Begone.",
+  "Time to check up on our checks.",
+
+  ["check", () => test_script_answers.decision2 === decision2[0]],
+  `Text that only renders if you selected ${decision2[0]}`,
+  "And only shows you this number too: 1",
+  ["check", () => test_script_answers.decision2 === decision2[1]],
+  `Text that only renders if you selected ${decision2[1]}`,
+  "And only shows you this number too: 2",
+  ["check", () => test_script_answers.decision2 === decision2[2]],
+  `Text that only renders if you selected ${decision2[2]}`,
+  "And only shows you this number too: 3",
+  ["rcheck"],
+
+  "FIN"
 ]
 
 export default test_script

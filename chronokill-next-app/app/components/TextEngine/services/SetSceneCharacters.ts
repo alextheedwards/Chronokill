@@ -21,18 +21,16 @@ export const SetSceneCharacters = (
     
         return tempCharactersArray
       })
-      break;
+      break
     case "remove":
       setSceneCharacters(currentSceneCharacters => {
         let tempCharactersArray = [...currentSceneCharacters]
-        tempCharactersArray = tempCharactersArray.filter(character => character.name !== 'Test Char')
+        tempCharactersArray = tempCharactersArray.filter(character => character.name !== sceneCharacter.name)
 
         return tempCharactersArray
       })
-      break;
+      break
   }
-
-
 }
 
 export default SetSceneCharacters
