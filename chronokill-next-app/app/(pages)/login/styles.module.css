@@ -1,0 +1,47 @@
+.bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-image: url('../../../public/placeholder_bg.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px);
+    background-color: #232D47;
+}
+
+.rectangle {
+    width: 40%;
+    min-width: 320px;
+    max-width: 475px;
+    flex-shrink: 0;
+    border: 4px solid #232D47;
+    background: linear-gradient(180deg, #C2D3FF 0%, rgba(197, 212, 250, 0.75) 74.5%, rgba(200, 212, 242, 0.50) 100%);
+    padding: 15px;
+
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+
+    color: #232D47;
+    /* font-family: "Monomaniac One"; */
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.h1 {
+    text-align: center;
+}
+
+.hr {
+    height: 4px;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: #232D47;
+}

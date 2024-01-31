@@ -1,0 +1,19 @@
+
+.topPanel {
+  height: 60px;
+  width: 100%;
+  background-color: #ACC3FF;
+  border-bottom: 4px solid #232D47;
+  color: #232D47;
+
+  display: grid;
+  align-items: center;
+
+  position: absolute;
+  text-align: center;
+  font-size: 48px;
+}
+
+.buttonWrapper {
+  margin: 0 10px;
+}
