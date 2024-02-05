@@ -3,11 +3,31 @@
 import { useEffect, useMemo, useState } from "react"
 import Image from 'next/image'
 
-import { TextPanel, Character, DecisionModal } from './components'
 import { test_script, test_script_answers } from "../../scripts/test_script"
-import { UserEvents, SetScriptStep, SetSceneBackground, SetSceneCharacters} from './services'
-import { SceneBackground, SceneCharacter, ScriptStep } from '../../interfaces'
-import { ActionImageArray, ActionCharacterArray, ActionDecisionArray, DecisionSelection, ActionCheckArray, CheckFunction } from "../../types"
+import { 
+  TextPanel, 
+  Character, 
+  DecisionModal 
+} from './components'
+import { 
+  UserEvents, 
+  SetScriptStep, 
+  SetSceneBackground, 
+  SetSceneCharacters,
+  AudioService
+} from './services'
+import { 
+  SceneBackground, 
+  SceneCharacter, 
+  ScriptStep 
+} from '../../interfaces'
+import { 
+  ActionImageArray, 
+  ActionCharacterArray, 
+  ActionDecisionArray, 
+  DecisionSelection, 
+  ActionCheckArray, 
+  CheckFunction, ActionSfxArray } from "../../types"
 
 import default_background from '../../../public/placeholder_char.jpeg'
 import styles from './styles.module.css'
@@ -76,25 +96,26 @@ export const TextEngine = () => {
         case "rcheck":
           SetScriptStep(setScriptStep, "rcheck")
           break
+        case "sfx":
+          const actionSfxArray: ActionSfxArray = currentScriptStep as ActionSfxArray
+          AudioService(`/sfx/${actionSfxArray[1]}`)
+          SetScriptStep(setScriptStep, "increment")
+          break
         default:
           //This is to skip actions that dont exist either because of a typo or not removed from script.
           SetScriptStep(setScriptStep, "increment")
           break
       }
     } else {
-      if (!scriptStep.check) {
+      if (!scriptStep.check || scriptStep.check()) {
         setSceneText(currentScriptStep)
       } else {
-        if (scriptStep.check()) {
-          setSceneText(currentScriptStep)
-        } else {
-          SetScriptStep(setScriptStep, "increment")
-        }
+        SetScriptStep(setScriptStep, "increment")
       }
     }
   }, [scriptStep])
 
-  // TODO: See if we can get rid of this the same way as <DecisionModal />
+  // TODO: See if we can get rid of this the same way as <DecisionModal/> and <AudioComponent/>
   const characterElements = useMemo(() => {
     if (sceneCharacters.length === 0) return []
 

@@ -40,6 +40,10 @@ export const test_script: SceneScript = [
 
   ["bg", placeholder_test_image],
 
+  'Now playing some sound effects.',
+
+  ["sfx", "jerma-scorn.mp3"], 
+
   "Time to load a character.",
 
   ["char", TestChar],

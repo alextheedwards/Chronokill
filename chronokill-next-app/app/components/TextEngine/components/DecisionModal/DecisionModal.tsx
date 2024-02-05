@@ -15,7 +15,7 @@ export const DecisionModal = ({
   setSceneDecision,
   sceneText
 }: DecisionModalProps) => {
-  if (sceneDecision.length === 0) return
+  if (sceneDecision.length === 0) return null
 
   const onClickChoice = (choiceMade: string) => {
     test_script_answers[sceneDecision[0]] = choiceMade
