@@ -5,11 +5,13 @@ import { useEffect, useState } from "react"
 import styles from './styles.module.css'
 
 interface TextPanelProps {
-  displayText: string
+  displayText: string;
+  onTextComplete?: () => void;
 }
 
 export const TextPanel = ({
-  displayText = ""
+  displayText = "",
+  onTextComplete
 }: TextPanelProps) => {
   const [displayedText, setDisplayedText] = useState('')
   const [index, setIndex] = useState(0)
@@ -26,14 +28,39 @@ export const TextPanel = ({
     }
 
     if (index < displayText.length) {
-        const timer = setTimeout(charDraw, 20)
-        return () => clearTimeout(timer)
+      const timer = setTimeout(charDraw, 20)
+      return () => clearTimeout(timer)
     }
-}, [index, displayText])
+  }, [index, displayText])
+
+  useEffect(() => {
+    const completeTextDisplay = () => {
+      // Immediately display the full text if it's not fully displayed yet
+      if (index < displayText.length) {
+        setDisplayedText(displayText);
+        setIndex(displayText.length); // Ensure to update index to match the length of displayText
+      }
+    };
+
+    // Add event listener to the whole document (or you could restrict this to a specific element)
+    document.addEventListener("click", completeTextDisplay);
+
+    // Cleanup to remove event listener
+    return () => {
+      document.removeEventListener("click", completeTextDisplay);
+    };
+  }, [index, displayText]);
+
+
+  useEffect(() => {
+    if (index === displayText.length) {
+      onTextComplete?.(); // Call the callback if provided
+    }
+  }, [index, displayText.length, onTextComplete]);
 
   return (
     <div className={styles.textPanel}>{displayedText}</div>
-  )  
+  )
 }
 
 export default TextPanel
