@@ -4,10 +4,14 @@ import ActionCharacterArray from "../../../types/ActionCharacterArray"
 
 export const SetSceneCharacters = (
   setSceneCharacters: Dispatch<SetStateAction<SceneCharacter[]>>,
-  actionCharacterArray: ActionCharacterArray,
-  type: string
+  type: string,
+  actionCharacterArray?: ActionCharacterArray
 ) => {
-  const sceneCharacter: SceneCharacter = actionCharacterArray[1]
+  let sceneCharacter: SceneCharacter
+
+  if (actionCharacterArray) {
+    sceneCharacter = actionCharacterArray[1]
+  }
 
   switch (type) {
     case "add":
@@ -30,6 +34,8 @@ export const SetSceneCharacters = (
         return tempCharactersArray
       })
       break
+    case "clear":
+      setSceneCharacters([])
   }
 }
 

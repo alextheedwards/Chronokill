@@ -1,24 +1,24 @@
 import { Dispatch, SetStateAction } from 'react'
 import { DecisionSelection } from '../../../../types'
-import { test_script_answers } from '../../../../scripts/test_script'
-
 import styles from './styles.module.css'
 
 interface DecisionModalProps {
   sceneDecision: DecisionSelection,
   setSceneDecision: Dispatch<SetStateAction<DecisionSelection>>,
-  sceneText: string
+  sceneText: string,
+  scriptAnswers: any
 }
 
 export const DecisionModal = ({
   sceneDecision,
   setSceneDecision,
-  sceneText
+  sceneText,
+  scriptAnswers
 }: DecisionModalProps) => {
   if (sceneDecision.length === 0) return null
 
   const onClickChoice = (choiceMade: string) => {
-    test_script_answers[sceneDecision[0]] = choiceMade
+    scriptAnswers[sceneDecision[0]] = choiceMade
     setSceneDecision([])
   }
 

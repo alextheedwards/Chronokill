@@ -22,6 +22,7 @@ export const SetScriptStep = (
         break
       case "scene":
         tempStep.scene = scene
+        tempStep.step = 0
         break
       case "check":
         if(checkFunction) {

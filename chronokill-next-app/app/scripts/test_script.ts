@@ -1,5 +1,6 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
+import {monday_script, monday_script_answers} from './monday_script'
 
 import placeholder_2560x1440 from '../../public/placeholder_2560x1440.jpeg'
 import placeholder_test_image from '../../public/placeholder_test_image.jpeg'
@@ -42,7 +43,7 @@ export const test_script: SceneScript = [
 
   'Now playing some sound effects.',
 
-  ["sfx", "jerma-scorn.mp3"], 
+  ["sfx", "jerma-scorn.mp3"],
 
   "Time to load a character.",
 
@@ -57,6 +58,7 @@ export const test_script: SceneScript = [
   ["bg", placeholder_2560x1440],
   ["char", TestCharDupe],
 
+  "That new character is mirrored! Must be the character styles.",
   "Time for a second question with more options.",
 
   ["qa", "decision2", decision2],
@@ -87,7 +89,9 @@ export const test_script: SceneScript = [
   "And only shows you this number too: 3",
   ["rcheck"],
 
-  "FIN"
+  "FIN",
+
+  ["script", monday_script, monday_script_answers]
 ]
 
 export default test_script
