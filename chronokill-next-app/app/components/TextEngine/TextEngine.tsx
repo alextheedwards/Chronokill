@@ -6,8 +6,8 @@ import Image from 'next/image'
 import { test_script, test_script_answers } from "../../scripts/test_script"
 import { 
   TextPanel, 
-  Character, 
-  DecisionModal 
+  DecisionModal, 
+  CharacterPanel
 } from './components'
 import { 
   UserEvents, 
@@ -126,21 +126,6 @@ export const TextEngine = () => {
     }
   }, [scriptStep])
 
-  // TODO: See if we can get rid of this the same way as <DecisionModal/> and <AudioComponent/>
-  const characterElements = useMemo(() => {
-    if (sceneCharacters.length === 0) return []
-
-    const characterElements = []
-
-    for (const sceneCharacter of sceneCharacters) {
-      characterElements.push(
-        <Character key={sceneCharacter.name} sceneCharacter={sceneCharacter} />
-      )
-    }
-
-    return characterElements
-  }, [sceneCharacters])
-
   // logs for the state
   // console.log("Texst Engine Current Step: ", scriptStep)
   // console.log("Text Engine Characters: ", sceneCharacters)
@@ -154,7 +139,7 @@ export const TextEngine = () => {
       <div className={styles.textPanelWrapper}>
         <TextPanel displayText={sceneText} />
       </div>
-      {characterElements}
+      <CharacterPanel sceneCharacters={sceneCharacters} />
       <DecisionModal
         sceneDecision={sceneDecision}
         setSceneDecision={setSceneDecision}
