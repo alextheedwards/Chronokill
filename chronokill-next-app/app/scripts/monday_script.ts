@@ -68,8 +68,6 @@ export const monday_script_answers: any = {
 }
 
 export const monday_script: SceneScript = [
-  "test",
-
   ["bg", bgReception],
   ["char", ActorRebecca],
 

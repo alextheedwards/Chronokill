@@ -36,6 +36,9 @@ export const test_script_answers: any = {
   decision2: undefined
 }
 
+
+
+// Script start
 export const test_script: SceneScript = [
   "Time to load background.",
 
@@ -46,7 +49,7 @@ export const test_script: SceneScript = [
   ["sfx", "jerma-scorn.mp3"],
 
   "Time to load a character.",
-
+  
   ["char", TestChar],
 
   "Lets ask a question.",

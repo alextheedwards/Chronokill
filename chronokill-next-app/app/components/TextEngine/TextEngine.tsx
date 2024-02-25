@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from "react"
+import { MouseEvent, useEffect, useMemo, useState } from "react"
 import Image from 'next/image'
 
 import { test_script, test_script_answers } from "../../scripts/test_script"
@@ -10,11 +10,12 @@ import {
   CharacterPanel
 } from './components'
 import { 
-  UserEvents, 
   SetScriptStep, 
   SetSceneBackground, 
   SetSceneCharacters,
-  AudioService
+  AudioService,
+  KeyboardEventHandler,
+  MouseEventHandler
 } from './services'
 import { 
   SceneBackground, 
@@ -29,7 +30,8 @@ import {
   ActionCheckArray, 
   CheckFunction, 
   ActionSfxArray,
-  ActionScriptArray
+  ActionScriptArray,
+  SceneScript
 } from "../../types"
 
 import default_background from '../../../public/placeholder_char.jpeg'
@@ -38,43 +40,52 @@ import styles from './styles.module.css'
 //formally Ehhngine
 export const TextEngine = () => {
   // TODO: Change this to a useReducer.
-  const [scriptStep, setScriptStep] = useState<ScriptStep>({ step: 0, direction: "forward", check: undefined, scene: undefined })
-  const [scriptAnswers, setScriptAnswers] = useState()
+  const [scriptStep, setScriptStep] = useState<ScriptStep>({ step: 0, check: undefined })
+  const [script, setScript] = useState<SceneScript>([])
+  const [scriptAnswers, setScriptAnswers] = useState({})
   const [sceneText, setSceneText] = useState<string>("")
   const [sceneBackground, setSceneBackground] = useState<SceneBackground>({ image: default_background })
   const [sceneCharacters, setSceneCharacters] = useState<SceneCharacter[]>([])
   const [sceneDecision, setSceneDecision] = useState<DecisionSelection>([])
+  const [isTextRendering, setIsTextRendering] = useState<boolean>(false)
+  const [skipTextRendering, setSkipTextRendering] = useState<boolean>(false)
+  
+  const UserEventListener = (event: KeyboardEvent | MouseEvent<HTMLDivElement>) => {
+    if (isTextRendering) {
+      setSkipTextRendering(true)
+      return
+    }
 
-  const UserEventHandler = (event: KeyboardEvent | MouseEvent) => {
-    UserEvents(event, setScriptStep)
+    const disable = sceneDecision.length > 0
+
+    if (event instanceof KeyboardEvent) {
+      KeyboardEventHandler(setScriptStep, event, disable)
+    } else {
+      MouseEventHandler(setScriptStep, event, disable)
+    }
   }
 
   useEffect(() => {
-    // it's technically an unintended feature, but when you click a choice in a decision, the click counts as
-    // a valid click for the UserEventHandler and therefore increments the SceneScript by 1
-    // if we ever need it to not be like that, we'd need to fix that
-
-    if (sceneDecision.length > 0) return
-
-    window.addEventListener('keydown', UserEventHandler)
-    window.addEventListener('click', UserEventHandler)
-
-    if (!scriptStep.scene && !scriptAnswers) {
-      SetScriptStep(setScriptStep, "scene", test_script)
-      setScriptAnswers(test_script_answers)
-    }
+    window.addEventListener('keydown', UserEventListener)
 
     return () => {
-      window.removeEventListener('keydown', UserEventHandler)
-      window.removeEventListener('click', UserEventHandler)
+      window.removeEventListener('keydown', UserEventListener)
     }
-  }, [sceneDecision])
+  }, [sceneDecision, isTextRendering])
 
   useEffect(() => {
-    if (!scriptStep.scene) return
+    if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
+      setScript(test_script)
+      setScriptAnswers(test_script_answers)
+      setScriptStep({ step: 0, check: undefined })
+    }
+  }, [])
 
-    const currentScriptStep = scriptStep.scene[scriptStep.step]
+  useEffect(() => {
+    if (script.length === 0) return
 
+    const currentScriptStep = script[scriptStep.step]
+    
     if (Array.isArray(currentScriptStep)) {
       switch (currentScriptStep[0]) {
         case "bg":
@@ -109,9 +120,11 @@ export const TextEngine = () => {
           break
         case "script":
           const actionScriptArray: ActionScriptArray = currentScriptStep as ActionScriptArray
-          SetScriptStep(setScriptStep, "scene", actionScriptArray[1])
+          setScript(actionScriptArray[1])
           setScriptAnswers(actionScriptArray[2])
+          SetScriptStep(setScriptStep, "reset")
           SetSceneCharacters(setSceneCharacters, "clear")
+          break
         default:
           //This is to skip actions that dont exist either because of a typo or not removed from script.
           SetScriptStep(setScriptStep, "increment")
@@ -126,18 +139,18 @@ export const TextEngine = () => {
     }
   }, [scriptStep])
 
-  // logs for the state
-  // console.log("Texst Engine Current Step: ", scriptStep)
-  // console.log("Text Engine Characters: ", sceneCharacters)
-  // console.log("Text Engine Background: ", sceneBackground)
-  // console.log("Text Engine Text: ", sceneText)
   return (
-    <div className={styles.textEngineWrapper}>
+    <div className={styles.textEngineWrapper} onClick={UserEventListener} >
       <div className={styles.sceneWrapper}>
         <Image priority src={sceneBackground.image} className={styles.sceneBackground} alt="me" />
       </div>
       <div className={styles.textPanelWrapper}>
-        <TextPanel displayText={sceneText} />
+        <TextPanel 
+          displayText={sceneText} 
+          skipTextRendering={skipTextRendering} 
+          setIsTextRendering={setIsTextRendering}
+          setSkipTextRendering={setSkipTextRendering}
+        />
       </div>
       <CharacterPanel sceneCharacters={sceneCharacters} />
       <DecisionModal
@@ -145,6 +158,7 @@ export const TextEngine = () => {
         setSceneDecision={setSceneDecision}
         sceneText={sceneText}
         scriptAnswers={scriptAnswers}
+        setScriptStep={setScriptStep}
       />
     </div>
   )

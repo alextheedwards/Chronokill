@@ -1,25 +1,32 @@
 import { Dispatch, SetStateAction } from 'react'
+
 import { DecisionSelection } from '../../../../types'
+import { ScriptStep } from '../../../../interfaces'
+
 import styles from './styles.module.css'
+import { SetScriptStep } from '../../services'
 
 interface DecisionModalProps {
   sceneDecision: DecisionSelection,
   setSceneDecision: Dispatch<SetStateAction<DecisionSelection>>,
   sceneText: string,
-  scriptAnswers: any
+  scriptAnswers: any,
+  setScriptStep: Dispatch<SetStateAction<ScriptStep>>
 }
 
 export const DecisionModal = ({
   sceneDecision,
   setSceneDecision,
   sceneText,
-  scriptAnswers
+  scriptAnswers,
+  setScriptStep
 }: DecisionModalProps) => {
   if (sceneDecision.length === 0) return null
 
   const onClickChoice = (choiceMade: string) => {
     scriptAnswers[sceneDecision[0]] = choiceMade
     setSceneDecision([])
+    SetScriptStep(setScriptStep, "increment")
   }
 
   const choices = sceneDecision[1].map((choice, index) => {

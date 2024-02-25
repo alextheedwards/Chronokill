@@ -1,17 +1,23 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
 import styles from './styles.module.css'
 
 interface TextPanelProps {
-  displayText: string
+  displayText: string,
+  skipTextRendering: boolean,
+  setIsTextRendering: Dispatch<SetStateAction<boolean>>,
+  setSkipTextRendering: Dispatch<SetStateAction<boolean>>
 }
 
 export const TextPanel = ({
-  displayText = ""
+  displayText = "",
+  skipTextRendering,
+  setIsTextRendering,
+  setSkipTextRendering
 }: TextPanelProps) => {
-  const [displayedText, setDisplayedText] = useState('')
+  const [displayedText, setDisplayedText] = useState("")
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
@@ -21,13 +27,22 @@ export const TextPanel = ({
 
   useEffect(() => {
     const charDraw = () => {
-      setDisplayedText(currentDisplayedText => currentDisplayedText + displayText.charAt(index))
-      setIndex((prev) => prev + 1)
+      if (!skipTextRendering) {
+        setDisplayedText(currentDisplayedText => currentDisplayedText + displayText.charAt(index))
+        setIndex((prev) => prev + 1)
+      } else {
+        setDisplayedText(displayText)
+        setIndex(displayText.length)
+        setSkipTextRendering(false)
+      }
     }
 
     if (index < displayText.length) {
-        const timer = setTimeout(charDraw, 20)
-        return () => clearTimeout(timer)
+      setIsTextRendering(true)
+      const timer = setTimeout(charDraw, 20)
+      return () => clearTimeout(timer)
+    } else {
+      setIsTextRendering(false)
     }
 }, [index, displayText])
 

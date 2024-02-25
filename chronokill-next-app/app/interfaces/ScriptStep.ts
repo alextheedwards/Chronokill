@@ -1,10 +1,8 @@
-import { CheckFunction, SceneScript } from "../types"
+import { CheckFunction } from "../types"
 
 export interface ScriptStep {
   step: number,
-  direction: string,
-  check: CheckFunction | undefined,
-  scene: SceneScript | undefined
+  check: CheckFunction | undefined
 }
 
 export default ScriptStep

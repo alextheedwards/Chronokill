@@ -11,7 +11,6 @@ export const SetScriptStep = (
 ) => {
   setScriptStep((currentStep: ScriptStep) => {
     const tempStep: ScriptStep = {...currentStep}
-    tempStep.direction = "forward"
     
     switch (type) {
       case "increment":
@@ -20,8 +19,7 @@ export const SetScriptStep = (
       case "decrement":
         tempStep.step = tempStep.step - 1
         break
-      case "scene":
-        tempStep.scene = scene
+      case "reset":
         tempStep.step = 0
         break
       case "check":
