@@ -6,16 +6,16 @@ import styles from './styles.module.css'
 
 interface TextPanelProps {
   displayText: string,
-  skipTextRendering: boolean,
+  isSkippingTextRendering: boolean,
   setIsTextRendering: Dispatch<SetStateAction<boolean>>,
-  setSkipTextRendering: Dispatch<SetStateAction<boolean>>
+  setIsSkippingTextRendering: Dispatch<SetStateAction<boolean>>
 }
 
 export const TextPanel = ({
   displayText = "",
-  skipTextRendering,
+  isSkippingTextRendering,
   setIsTextRendering,
-  setSkipTextRendering
+  setIsSkippingTextRendering
 }: TextPanelProps) => {
   const [displayedText, setDisplayedText] = useState("")
   const [index, setIndex] = useState(0)
@@ -27,13 +27,13 @@ export const TextPanel = ({
 
   useEffect(() => {
     const charDraw = () => {
-      if (!skipTextRendering) {
+      if (!isSkippingTextRendering) {
         setDisplayedText(currentDisplayedText => currentDisplayedText + displayText.charAt(index))
         setIndex((prev) => prev + 1)
       } else {
         setDisplayedText(displayText)
         setIndex(displayText.length)
-        setSkipTextRendering(false)
+        setIsSkippingTextRendering(false)
       }
     }
 

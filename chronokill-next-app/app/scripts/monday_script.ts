@@ -68,6 +68,8 @@ export const monday_script_answers: any = {
 }
 
 export const monday_script: SceneScript = [
+  ". . .",
+
   ["bg", bgReception],
   ["char", ActorRebecca],
 
@@ -88,6 +90,11 @@ export const monday_script: SceneScript = [
 
   "Hey, how're you doing? I'm glad they finally hired another consultant; things have been difficult these past few months. We haven't had a proper attack in a while, but the staff just won't listen to the training materials. The last phishing test alone had a failure rate of 20%. We need you to help encourage better practices here.",
   "First things first though, let me show you around.",
+
+  ["bg", undefined],
+
+  "",
+  ". . .",
 
   ["bg", bgServerRoom],
   

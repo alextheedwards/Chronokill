@@ -1,7 +1,5 @@
 import { StaticImageData } from "next/image";
 
-export interface SceneBackground {
-  image: StaticImageData
-}
+export type SceneBackground = StaticImageData | undefined
 
 export default SceneBackground

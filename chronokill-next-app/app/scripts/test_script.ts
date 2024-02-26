@@ -1,6 +1,7 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
-import {monday_script, monday_script_answers} from './monday_script'
+import { ActionTypes } from '../constants'
+import { monday_script, monday_script_answers } from './monday_script'
 
 import placeholder_2560x1440 from '../../public/placeholder_2560x1440.jpeg'
 import placeholder_test_image from '../../public/placeholder_test_image.jpeg'
@@ -42,59 +43,65 @@ export const test_script_answers: any = {
 export const test_script: SceneScript = [
   "Time to load background.",
 
-  ["bg", placeholder_test_image],
+  [ActionTypes.bg, placeholder_test_image],
 
   'Now playing some sound effects.',
 
-  ["sfx", "jerma-scorn.mp3"],
+  [ActionTypes.sfx, "jerma-scorn.mp3"],
 
   "Time to load a character.",
   
-  ["char", TestChar],
+  [ActionTypes.char, TestChar],
 
   "Lets ask a question.",
 
-  ["qa", "decision1", decision1],
+  [ActionTypes.qa, "decision1", decision1],
 
-  "Lets change background to a bigger image and add a new character.",
+  "Lets see what happens when we remove the background.",
 
-  ["bg", placeholder_2560x1440],
-  ["char", TestCharDupe],
+  [ActionTypes.bg, undefined],
+
+  "...",
+  "V O I D",
+  "Lets add a new background with a bigger image, and add a new character.",
+
+  [ActionTypes.bg, placeholder_2560x1440],
+  [ActionTypes.char, TestCharDupe],
 
   "That new character is mirrored! Must be the character styles.",
   "Time for a second question with more options.",
 
-  ["qa", "decision2", decision2],
+  [ActionTypes.qa, "decision2", decision2],
 
-  "Check time",
+  "Check time!",
 
-  ["check", () => test_script_answers.decision1 === decision1[0]],
+  [ActionTypes.check, () => test_script_answers.decision1 === decision1[0]],
   "Text that only renders if you selected yes!",
-  ["check", () => test_script_answers.decision1 === decision1[1]],
+  [ActionTypes.check, () => test_script_answers.decision1 === decision1[1]],
   "Text that only renders if you selected no!",
-  ["rcheck"],
+  [ActionTypes.rcheck],
 
   "Long text that is very long so that I can see how the text will wrap in the text box or not without me making any changes to make it fit.",
 
-  ["rchar", TestChar],
+  [ActionTypes.rchar, TestChar],
 
-  "Begone.",
+  "Begone!",
   "Time to check up on our checks.",
 
-  ["check", () => test_script_answers.decision2 === decision2[0]],
+  [ActionTypes.check, () => test_script_answers.decision2 === decision2[0]],
   `Text that only renders if you selected ${decision2[0]}`,
   "And only shows you this number too: 1",
-  ["check", () => test_script_answers.decision2 === decision2[1]],
+  [ActionTypes.check, () => test_script_answers.decision2 === decision2[1]],
   `Text that only renders if you selected ${decision2[1]}`,
   "And only shows you this number too: 2",
-  ["check", () => test_script_answers.decision2 === decision2[2]],
+  [ActionTypes.check, () => test_script_answers.decision2 === decision2[2]],
   `Text that only renders if you selected ${decision2[2]}`,
   "And only shows you this number too: 3",
-  ["rcheck"],
+  [ActionTypes.rcheck],
 
-  "FIN",
+  "ENDUT! HOCH HECH!",
 
-  ["script", monday_script, monday_script_answers]
+  [ActionTypes.script, monday_script, monday_script_answers]
 ]
 
 export default test_script
