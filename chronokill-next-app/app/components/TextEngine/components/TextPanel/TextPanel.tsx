@@ -3,19 +3,22 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
 import styles from './styles.module.css'
+import { SceneCharacter } from "../../../../interfaces"
 
 interface TextPanelProps {
   displayText: string,
   isSkippingTextRendering: boolean,
   setIsTextRendering: Dispatch<SetStateAction<boolean>>,
-  setIsSkippingTextRendering: Dispatch<SetStateAction<boolean>>
+  setIsSkippingTextRendering: Dispatch<SetStateAction<boolean>>,
+  sceneName: SceneCharacter | undefined
 }
 
 export const TextPanel = ({
   displayText = "",
   isSkippingTextRendering,
   setIsTextRendering,
-  setIsSkippingTextRendering
+  setIsSkippingTextRendering,
+  sceneName
 }: TextPanelProps) => {
   const [displayedText, setDisplayedText] = useState("")
   const [index, setIndex] = useState(0)
@@ -46,9 +49,14 @@ export const TextPanel = ({
     }
 }, [index, displayText])
 
-  return (
+const titleElement = !sceneName?.name
+  ? null
+  : <div className={styles.textPanelTitle} style={{color: sceneName.color}}>{sceneName.name}</div>
+
+  return <>
+    { titleElement }
     <div className={styles.textPanel}>{displayedText}</div>
-  )  
+  </>
 }
 
 export default TextPanel

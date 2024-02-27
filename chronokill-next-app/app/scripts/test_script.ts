@@ -3,9 +3,14 @@ import { SceneCharacter } from '../interfaces'
 import { ActionTypes } from '../constants'
 import { monday_script, monday_script_answers } from './monday_script'
 
-import placeholder_2560x1440 from '../../public/placeholder_2560x1440.jpeg'
-import placeholder_test_image from '../../public/placeholder_test_image.jpeg'
+import placeholderBg from '../../public/backgrounds/placeholderBg.png'
+import placeholderBgColor from '../../public/backgrounds/placeholderBgColor.png'
 import placeholder_char from '../../public/placeholder_char.jpeg'
+
+const Narrator: SceneCharacter = {
+  name: "Narrator",
+  color: "#000000"
+}
 
 const TestChar: SceneCharacter = {
   name: "Test Char",
@@ -41,11 +46,20 @@ export const test_script_answers: any = {
 
 // Script start
 export const test_script: SceneScript = [
-  "Time to load background.",
+  "Welcome to the TextEngine default tests script.",
+  `This script will run through all the features available to TextEngine as of ${new Date().toDateString()}.`,
+  `This won't make much sense unless you're also looking at the default script file, test_script.js`,
+  "We'll run through all the available ActionTypes and things you can do.",
+  "First things first, lets load a background.",
 
-  [ActionTypes.bg, placeholder_test_image],
+  [ActionTypes.bg, placeholderBg],
 
-  'Now playing some sound effects.',
+  "You're finally awake..",
+  "Let me tell you my name.",
+
+  [ActionTypes.name, Narrator],
+
+  'Now, lets play some sound effects.',
 
   [ActionTypes.sfx, "jerma-scorn.mp3"],
 
@@ -54,6 +68,7 @@ export const test_script: SceneScript = [
   [ActionTypes.char, TestChar],
 
   "Lets ask a question.",
+  "Yes or no?",
 
   [ActionTypes.qa, "decision1", decision1],
 
@@ -65,15 +80,16 @@ export const test_script: SceneScript = [
   "V O I D",
   "Lets add a new background with a bigger image, and add a new character.",
 
-  [ActionTypes.bg, placeholder_2560x1440],
+  [ActionTypes.bg, placeholderBgColor],
   [ActionTypes.char, TestCharDupe],
 
   "That new character is mirrored! Must be the character styles.",
   "Time for a second question with more options.",
+  "MEIOU?",
 
   [ActionTypes.qa, "decision2", decision2],
 
-  "Check time!",
+  "Time to conditionally render some text.",
 
   [ActionTypes.check, () => test_script_answers.decision1 === decision1[0]],
   "Text that only renders if you selected yes!",
@@ -82,10 +98,13 @@ export const test_script: SceneScript = [
   [ActionTypes.rcheck],
 
   "Long text that is very long so that I can see how the text will wrap in the text box or not without me making any changes to make it fit.",
+  "Time to get rid of a character.",
 
   [ActionTypes.rchar, TestChar],
 
   "Begone!",
+  "Lets get rid of this name while we're at it..",
+  [ActionTypes.name, undefined],
   "Time to check up on our checks.",
 
   [ActionTypes.check, () => test_script_answers.decision2 === decision2[0]],

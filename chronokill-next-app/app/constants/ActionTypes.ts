@@ -7,7 +7,8 @@ export enum ActionTypes {
   rchar = "rchar", // remove character
   check = "check", // conditional rendering
   rcheck = "rcheck", // remove conditional rendering
-  script = "script" // change script
+  script = "script", // change script
+  name = "name" // add textpanel title
 }
 
 export default ActionTypes

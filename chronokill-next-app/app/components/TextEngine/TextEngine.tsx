@@ -43,10 +43,13 @@ export const TextEngine = () => {
   const [scriptStep, setScriptStep] = useState<ScriptStep>({ step: 0, check: undefined })
   const [script, setScript] = useState<SceneScript>([])
   const [scriptAnswers, setScriptAnswers] = useState<any>({})
+
   const [sceneText, setSceneText] = useState<string>("")
   const [sceneBackground, setSceneBackground] = useState<SceneBackground>(undefined)
   const [sceneCharacters, setSceneCharacters] = useState<SceneCharacter[]>([])
   const [sceneDecision, setSceneDecision] = useState<DecisionSelection>([])
+  const [sceneName, setSceneName] = useState<SceneCharacter>()
+
   const [isTextRendering, setIsTextRendering] = useState<boolean>(false)
   const [isSkippingTextRendering, setIsSkippingTextRendering] = useState<boolean>(false)
   const [isShowingOverlay, setIsShowingOverlay] = useState<boolean>(true)
@@ -135,6 +138,11 @@ export const TextEngine = () => {
           SetScriptStep(setScriptStep, "reset")
           SetSceneCharacters(setSceneCharacters, "clear")
           break
+        case ActionTypes.name:
+          const actionNameArray: ActionCharacterArray = currentScriptStep as ActionCharacterArray
+          setSceneName(actionNameArray[1])
+          SetScriptStep(setScriptStep, "increment")
+          break
         default:
           //This is to skip actions that dont exist either because of a typo or not removed from script.
           SetScriptStep(setScriptStep, "increment")
@@ -155,7 +163,7 @@ export const TextEngine = () => {
   return (
     <div className={styles.textEngineWrapper} onClick={UserEventListener} >
       <div className={styles.backgroundWrapper}>
-        <BackgroundImage sceneBackground={sceneBackground} isShowingOverlay={isShowingOverlay} setIsShowingOverlay={setIsShowingOverlay} />
+        <BackgroundImage sceneBackground={sceneBackground} isShowingOverlay={isShowingOverlay} />
       </div>
       <div className={styles.textPanelWrapper}>
         <TextPanel 
@@ -163,6 +171,7 @@ export const TextEngine = () => {
           isSkippingTextRendering={isSkippingTextRendering} 
           setIsTextRendering={setIsTextRendering}
           setIsSkippingTextRendering={setIsSkippingTextRendering}
+          sceneName={sceneName}
         />
       </div>
       <CharacterPanel sceneCharacters={sceneCharacters} />
