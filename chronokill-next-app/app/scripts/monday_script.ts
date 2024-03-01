@@ -1,5 +1,6 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
+import { ActionTypes } from '../constants'
 
 import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
@@ -69,49 +70,50 @@ export const monday_script_answers: any = {
 export const monday_script: SceneScript = [
   ". . .",
 
-  ["bg", bgReception],
-  ["char", ActorRebecca],
+  [ActionTypes.bg, bgReception],
+  [ActionTypes.char, ActorRebecca],
 
   "You walk up to the receptionist and introduce yourself as a new Cyber Security intern.",
 
   "Ah, good morning <PlayerName>. We've been expecting you. Just take a seat, the boss will be here any minute.",
   "A few minutes later…",
 
-  ["char", ActorBill],
+  [ActionTypes.char, ActorBill],
 
   "Hey there! Welcome to Cronosoft! My name's Bill, I own the place. Nice to meet you, <PlayerName>. We're glad to have you on our team. Let me take you to your desk.",
 
-  ["rchar", ActorRebecca],
-  ["bg", bgPlayerDesk],
+  [ActionTypes.rchar, ActorRebecca],
+  [ActionTypes.bg, bgPlayerDesk],
   
   "So here's where the magic happens. This is Simon, he's the senior cyber specialist. I'll leave it to him to explain what your role is.",
 
-  ["rchar", ActorBill],
-  ["char", ActorSimon],
+  [ActionTypes.rchar, ActorBill],
+  [ActionTypes.char, ActorSimon],
 
   "Hey, how're you doing? I'm glad they finally hired another consultant; things have been difficult these past few months. We haven't had a proper attack in a while, but the staff just won't listen to the training materials. The last phishing test alone had a failure rate of 20%. We need you to help encourage better practices here.",
   "First things first though, let me show you around.",
 
-  ["bg", undefined],
+  [ActionTypes.bg, undefined],
 
   "",
   ". . .",
 
-  ["bg", bgServerRoom],
+  [ActionTypes.bg, bgServerRoom],
   
   "So this is our server room, the heart of it all. We store a lot of sensitive data on here, so access is restricted to us. After an earlier restructure, managing employee access to stuff like this is our responsibility, so look forward to that.",
 
-  ["bg", bgReception],
+  [ActionTypes.bg, bgReception],
 
-  "Here's reception. You've already met Rebecca.",
-  ["char", ActorRebecca],
-  ["rchar", ActorSimon],
-  ["char", ActorSimonMirror],
+  "Here's reception.  Rebecca here organises all sorts of things, like client meetings, office parties and social events.",
+
+  [ActionTypes.char, ActorRebecca],
+  [ActionTypes.rchar, ActorSimon],
+  [ActionTypes.char, ActorSimonMirror],
 
   "How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
 
-  ["rchar", ActorRebecca],
-  ["bg", bgLunchRoom],
+  [ActionTypes.rchar, ActorRebecca],
+  [ActionTypes.bg, bgLunchRoom],
 
   "The best part of the office. Let's sit down here, there's some stuff I need to fill you in on.",
   "So, the business started focusing on cybersecurity awareness recently after an attack a few months ago - some emails were leaked after an employee used a weak password. All things considered, it wasn't that bad, but it really shook the executives up, which led them to hire you.",
@@ -123,48 +125,48 @@ export const monday_script: SceneScript = [
 
   "…And that's lunch. I'll let you get talking to the others, we'll meet back in an hour.",
 
-  ["rchar", ActorSimon],
+  [ActionTypes.rchar, ActorSimon],
   
   "You take out your lunch and sit down. An employee approaches you.", //NARRATOR VOICE
 
-  ["char", ActorOscar],
+  [ActionTypes.char, ActorOscar],
 
   "You're the new cyber intern, right? <PlayerName>? Good to meet you. I already see plenty of Simon, so I'm sure we'll be working together pretty often.",
 
-  ["rchar", ActorOscar],
+  [ActionTypes.rchar, ActorOscar],
 
   "Lunch passes…",
 
-  ["bg", bgPlayerDesk],
+  [ActionTypes.bg, bgPlayerDesk],
 
   "You see a USB stick on the ground next to someone's desk. They haven't noticed it.",
 
-  ["qa", "decision1", decision1],
-  ["check", () => monday_script_answers.decision1 === decision1[0]], //plug it in
+  [ActionTypes.qa, "decision1", decision1],
+  [ActionTypes.check, () => monday_script_answers.decision1 === decision1[0]], //plug it in
 
   "You reach for the USB stick and move to plug it in before Simon stops you.",
 
-  ["char", ActorSimon],
+  [ActionTypes.char, ActorSimon],
 
   "Woah, careful! You don't know what's on that. For all we know, there could be malware on there! Give it here, I'll analyse it first.",
   "Simon boots up a laptop and opens a virtual machine. After inserting the USB, he then runs a scan using Anti-Virus software.", //NARRATOR
   "It looks like there's some JavaScript embedded in this PDF that installs a backdoor. This looks like a credible threat. We need to be on guard for any other attempts to breach our defences.",
 
-  ["rchar", ActorSimon],
-  ["check", () => monday_script_answers.decision1 === decision1[1]], //give to reception
+  [ActionTypes.rchar, ActorSimon],
+  [ActionTypes.check, () => monday_script_answers.decision1 === decision1[1]], //give to reception
 
   "You reach for the USB stick. You can't tell who it belongs to, so you decide to give it in to reception.",
 
-  ["bg", bgReception],
-  ["char", ActorRebecca],
+  [ActionTypes.bg, bgReception],
+  [ActionTypes.char, ActorRebecca],
 
   "I haven't seen this one before, there's so many of these lying about. Maybe looking at the files will help us figure out who it belongs to.",
   "Rebecca plugs the USB into her computer. You notice a couple command prompt windows open and immediately close. The USB contains one file, README.pdf. Rebecca opens it.", //NARRATOR
   "That's weird, the file is blank. I'll keep the stick here in case anyone comes looking for it.",
 
-  ["rchar", ActorRebecca],
-  ["check", () => monday_script_answers.decision1 === decision1[2]], //report to simon
-  ["bg", bgPlayerDesk],
+  [ActionTypes.rchar, ActorRebecca],
+  [ActionTypes.check, () => monday_script_answers.decision1 === decision1[2]], //report to simon
+  [ActionTypes.bg, bgPlayerDesk],
 
   "You pick up the USB stick. Remembering the risk of malicious files, you ask Simon to inspect it.",
 
@@ -174,23 +176,23 @@ export const monday_script: SceneScript = [
   "Simon boots up a laptop and opens a virtual machine. After inserting the USB, he then runs a scan using Anti-Virus software.", //NARRATOR
   "It looks like there's some JavaScript embedded in this PDF that installs a backdoor. This looks like a credible threat. We need to be on guard for any other attempts to breach our defences.",
 
-  ["rchar", ActorSimon],
-  ["rcheck"],
+  [ActionTypes.rchar, ActorSimon],
+  [ActionTypes.rcheck],
 
   "Later...",
 
-  ["char", ActorSimon],
+  [ActionTypes.char, ActorSimon],
 
   "…So that's the firewall policy as we have it now, but I was thinking to update it with a-",
   "You get a notification from Oscar about a suspicious email. You and Simon walk around to their desk.",
 
-  ["bg", bgOscarDesk],
-  ["char", ActorOscar],
+  [ActionTypes.bg, bgOscarDesk],
+  [ActionTypes.char, ActorOscar],
 
   "Hey, I got this weird looking email. It says it's from HR, but there's an external message warning. It sounds urgent. What should I do about it?",
 
-  ["qa", "decision2", decision2],
-  ["check", () => monday_script_answers.decision2 === decision2[0]], //click in incognito
+  [ActionTypes.qa, "decision2", decision2],
+  [ActionTypes.check, () => monday_script_answers.decision2 === decision2[0]], //click in incognito
 
   "Whenever I'm not sure about a link's safety, I always use Incognito mode. I've never had a security problem with it.", //YOU
   "Oscar opens the link in Incognito. The Chronosoft login page appears.", //NARRATOR
@@ -200,17 +202,17 @@ export const monday_script: SceneScript = [
   "Oscar inputs details again, logging in successfully. There is no sign of any urgent message.", //NARRATOR
   "Huh. Maybe they meant to send it to someone else?", //OSCAR
 
-  ["check", () => monday_script_answers.decision2 === decision2[1]], //delete email
+  [ActionTypes.check, () => monday_script_answers.decision2 === decision2[1]], //delete email
 
   "If it says it's from an external source, it can't actually be from HR. You're better off deleting it; worst case, they send you another email.", //YOU
 
-  ["check", () => monday_script_answers.decision2 === decision2[2]], //verify link authenticity
+  [ActionTypes.check, () => monday_script_answers.decision2 === decision2[2]], //verify link authenticity
 
   "You copy the embedded URL and examine its structure. On close inspection, you notice Chronosoft is spelled “Chromosoft”. Opening the link in a Virtual Machine, the website looks identical to Chronosoft's login page.", //NARRATOR
   "A website trying to imitate the company's is a dead giveaway for a phishing attempt. We'll block this domain, but more could appear at any time.", //YOU
 
-  ["rcheck"],
-  ["char", ActorSimon],
+  [ActionTypes.rcheck],
+  [ActionTypes.char, ActorSimon],
 
   "There you go, your first day and you've already seen two attempts to breach our network.",
   "You need to make sure you always stay vigilant and stay alert to these threats", //IF WRONG CHOICE MADE
