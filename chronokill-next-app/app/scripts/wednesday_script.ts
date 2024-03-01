@@ -1,0 +1,173 @@
+import { SceneScript } from '../types'
+import { SceneCharacter } from '../interfaces'
+
+import bgReception from '../../public/backgrounds/reception.png'
+import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
+
+import imgBill from '../../public/actors/bill.png'
+import imgSimon from '../../public/actors/simon.png'
+import imgRebecca from '../../public/actors/rebecca.png'
+import imgOscar from '../../public/actors/oscar.png'
+  
+  const ActorSimon: SceneCharacter = {
+    name: "Simon",
+    color: "#ff0000",
+    image: imgSimon,
+    styles: []
+  }
+  
+  const ActorSimonMirror: SceneCharacter = {
+    name: "Simon",
+    color: "#ff0000",
+    image: imgSimon,
+    styles: []
+  }
+
+  const ActorOscar: SceneCharacter = {
+    name: "Oscar",
+    color: "#ff0000",
+    image: imgOscar,
+    styles: ["centre-right"]
+  }  
+  
+  const ActorRebecca: SceneCharacter = {
+    name: "Rebecca",
+    color: "#ff0000",
+    image: imgRebecca,
+    styles: []
+  }
+
+  const ActorBill: SceneCharacter = {
+    name: "Rebecca",
+    color: "#ff0000",
+    image: imgBill,
+    styles: []
+  }
+
+  const decision1: string[] = [
+    "Inform stakeholders",
+    "Cover up attack",
+    "Pay ransom",
+  ]
+  
+  const decision2: string[] = [
+    "Yes",
+    "No",
+  ]
+
+  export const wednesday_script_answers: any = {
+    decision1: undefined,
+    decision2: undefined
+  }
+
+  export const wednesday_script: SceneScript = [
+
+    ["bg", bgReception],
+    ["char", ActorRebecca],
+
+    "You arrive at the office and scan your guest pass", //NARRATOR
+
+    ["rchar", ActorRebecca],
+
+    "You sit at your desk and boot up your computer. It loads a photo of a poorly rendered skeleton graphic, and a list of demands:", //NARRATOR
+
+    "YANKEE BASTARDS, WE HAVE YOUR ADDRESSES, YOUR PASSWORDS, YOUR BANK DETAILS PLEASE DELIVER $5000 IN NEGOTIABLE AMERICAN CURRENCY KINDLY YOU HAVE TWELVE HOURS", //SCAMMERS
+
+    "At the bottom of the page are a Bitcoin address and several publicly hosted links named ChronosoftPayslips.zip.",//NARRATOR
+
+    "Oscar approaches you.",
+
+    ["char", ActorOscar],
+
+    "Oscar approaches you.",
+
+    ["char", ActorSimonMirror],
+
+    //Manuall Verify Access
+
+    "They have everything, Oscar. Our bank details, sensitive client information, who knows what else. If this gets out...",
+
+    //Guest Passes
+
+    "They have everything, Oscar. Our bank details, sensitive client information, someone even got into the server room last night. If this gets out...",
+
+    "You try to think of a way out of this.",//NARRATOR
+
+    ["check", () => wednesday_script_answers.decision1 === decision1[0]], //inform stakeholders
+    ["rchar", ActorSimonMirror],
+    ["rchar", ActorOscar],
+
+    "You recognise your responsibility to the stakeholders of the company, and that a transparent response is required. You give Bill the following statement to announce: ",//NARRATOR
+    "Chronosoft's security measures have been breached by a ransomware attack. Company records, employee personal information and more are expected to leak. More to announce soon.",//NARRATOR
+
+    ["char", ActorBill],
+    ["bg", bgReception], //needs changed to boss' office
+
+    "This is going to be a legal nightmare. The next statement will have to be very carefully worded.",
+
+    ["check", () => wednesday_script_answers.decision1 === decision1[1]], //cover up attack
+
+    ["rchar", ActorSimonMirror],
+    ["rchar", ActorOscar],
+
+    "You really don't want to take responsibility for something this big on your first week. You hint to Bill that a lot of trouble would be avoided if nobody else knew about it.",//NARRATOR
+    "Bill whispers something to Simon, and hurriedly leaves the room. Simon makes himself busy.",//NARRATOR
+
+    //FADE TO?
+
+    "Two police officers arrive at the office.",//NARRATOR
+    "ARREST MADE: Name: [NAME] Crime: Financial Misconduct, Data Protection Awaiting trial ",//nees to be coded in
+
+    //INSTAFAIL
+
+    ["check", () => wednesday_script_answers.decision1 === decision1[2]], //pay ransom
+
+    "You argue that the ransom demand is surprisingly small and would be less expensive to the company than any legal fees if this were to come out. Oscar agrees with you, offering to front the money himself to speed things up. ",//NARRATOR
+
+    //FADE
+
+    "YANKEE BASTARDS, PLEASE DELIVER $20000 FURTHER IN NEGOTIABLE AMERICAN CURRENCY",
+
+    "You quickly realise your mistake. Simon gives Bill the following statement to announce:",//NARRATOR
+
+    "Chronosoft's security measures have been breached by a ransomware attack. Company records, employee personal information and more are expected to leak. More to announce soon. ",
+
+    ["char", ActorBill],
+    ["bg", bgReception], //needs changed to boss' office
+
+    "This is going to be a legal nightmare. The next statement will have to be very carefully worded.",
+
+    ["rcheck"],
+    ["char", ActorSimonMirror],
+
+    "Simon organises a board meeting to discuss personal safety after the data leak.",//NARRATOR
+
+    "First and easiest thing to do is change your passwords, on everything you can. Make sure no two passwords are the same. Call your bank's fraud department and inform them of the leak. Keep an extra close eye on your account activity. Identity theft is also a risk, but there's not much more you can do than report it. ",//NARRATOR
+
+    ["rchar", ActorSimonMirror],
+
+    "I know Simon hasn't fully secured the network yet, but the stakeholders aren't happy about losing business. I'm not happy about losing business. Can we get the computers back up?",
+
+    ["qa", "decision2", decision2],
+    ["check", () => wednesday_script_answers.decision2 === decision2[0]], //manually verify access
+
+    "Thinking about what this is costing the company leads you to agree with him. You reconnect Bill's computer.",//NARRATOR
+
+    ["check", () => wednesday_script_answers.decision2 === decision2[1]], //guest passes
+
+    "You argue that trying to keep working under a compromised network will lead to further data loss and could let the intrusion spread.",//NARRATOR
+
+    "Yeah, staying on the safe side will probably end up costing less anyway.",//NARRATOR
+
+    //FADE
+
+    ["rcheck"],
+    ["rchar", ActorBill],
+    ["bg", bgPlayerDesk],
+    ["rhar", ActorSimon],
+
+    "I'll need to pull an all-nighter tonight to make sure we're okay for tomorrow. See you then.",
+
+  ]
+
+  export default wednesday_script
