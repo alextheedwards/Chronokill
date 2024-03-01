@@ -8,16 +8,15 @@ describe('Main Menu Component', () => {
     render(<MainMenu />);
     
     // Check if header/links are rendered
-    const mainMenuHeader = screen.getByText('Main Menu');
-    const rootLink = screen.getByText('Root');
-    const loginLink = screen.getByText('Login');
-    const ingameLink = screen.getByText('Play Game');
-    const nopageLink = screen.getByText('Page That Doesn\'t Exist');
-    
+    const mainMenuHeader = screen.getByText('MAIN MENU'); 
+    const ingameLink = screen.getByText('Start/Continue');
+    const optionMenu = screen.getByTest('Options')
+    const quitLink = screen.getByTest('Quit')
+
     expect(mainMenuHeader).toBeInTheDocument();
-    expect(rootLink).toBeInTheDocument();
-    expect(loginLink).toBeInTheDocument();
     expect(ingameLink).toBeInTheDocument();
-    expect(nopageLink).toBeInTheDocument();
+    expect(optionMenu).toBeInTheDocument();
+    expect(quitLink).toBeInTheDocument();
+
   });
 });

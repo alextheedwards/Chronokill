@@ -10,7 +10,7 @@
 }
 
 .rectangle {
-    width: 40%;
+    
     min-width: 320px;
     max-width: 475px;
     flex-shrink: 0;
@@ -18,9 +18,8 @@
     background: linear-gradient(180deg, #C2D3FF 0%, rgba(197, 212, 250, 0.75) 74.5%, rgba(200, 212, 242, 0.50) 100%);
     padding: 15px;
 
-    top: 53%;
+    top: 50%;
     left: 50%;
-    
     position: absolute;
     -webkit-transform: translate(-50%,-50%);
     -moz-transform: translate(-50%,-50%);
@@ -30,7 +29,7 @@
 
     color: #232D47;
     /* font-family: "Monomaniac One"; */
-    font-size: 35px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -39,11 +38,19 @@
 .h1 {
     text-align: center;
     font-weight: bold;
+    margin-bottom: 20px;
+}
+.logo {
+    width: 50%; 
+    max-width: 200px; 
+    margin: 0 auto; 
+    display: block; 
 }
 
-.hr {
-    height: 4px;
-    width: 100%;
-    margin-bottom: 15px;
-    background-color: #232D47;
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column; 
+    margin-bottom: 20px;
 }
