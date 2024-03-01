@@ -4,6 +4,7 @@ export enum ActionTypes {
   qa = "qa", // decision modals
   sfx = "sfx", // sounds
   char = "char", // add character
+  echar = "echar", // edit character
   rchar = "rchar", // remove character
   check = "check", // conditional rendering
   rcheck = "rcheck", // remove conditional rendering
