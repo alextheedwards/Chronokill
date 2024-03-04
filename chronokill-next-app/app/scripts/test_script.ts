@@ -120,6 +120,9 @@ export const test_script: SceneScript = [
 
   "ENDUT! HOCH HECH!",
 
+  //[ActionTypes.endgame, "End"],
+  //uncomment to test end popup!
+
   [ActionTypes.script, monday_script, monday_script_answers]
 ]
 
