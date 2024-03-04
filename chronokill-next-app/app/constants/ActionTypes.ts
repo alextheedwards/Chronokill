@@ -9,7 +9,8 @@ export enum ActionTypes {
   check = "check", // conditional rendering
   rcheck = "rcheck", // remove conditional rendering
   script = "script", // change script
-  name = "name" // add textpanel title
+  name = "name", // add textpanel title
+  endgame = "endgame" //end game popup
 }
 
 export default ActionTypes
