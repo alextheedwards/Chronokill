@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 
 import { DecisionSelection } from '../../../../types'
-import { ScriptStep } from '../../../../interfaces'
 
 import styles from './styles.module.css'
 import { SetScriptStep } from '../../services'
@@ -11,7 +10,7 @@ interface DecisionModalProps {
   setSceneDecision: Dispatch<SetStateAction<DecisionSelection>>,
   sceneText: string,
   scriptAnswers: any,
-  setScriptStep: Dispatch<SetStateAction<ScriptStep>>
+  setScriptStep: Dispatch<SetStateAction<number>>
 }
 
 export const DecisionModal = ({

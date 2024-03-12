@@ -1,10 +1,9 @@
 import { Dispatch, SetStateAction } from "react"
 
-import { ScriptStep } from "../../../interfaces"
 import { SetScriptStep } from "."
 
 export const KeyboardEventHandler = (
-  setScriptStep: Dispatch<SetStateAction<ScriptStep>>, 
+  setScriptStep: Dispatch<SetStateAction<number>>, 
   event: KeyboardEvent,
   disable: boolean
 ) => {

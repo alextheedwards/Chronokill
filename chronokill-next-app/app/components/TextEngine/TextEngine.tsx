@@ -20,8 +20,7 @@ import {
 } from './services'
 import { 
   SceneBackground,
-  SceneCharacter, 
-  ScriptStep 
+  SceneCharacter
 } from '../../interfaces'
 import { 
   ActionImageArray, 
@@ -40,9 +39,12 @@ import styles from './styles.module.css'
 //formally Ehhngine
 export const TextEngine = () => {
   // TODO: Change this to a useReducer.
-  const [scriptStep, setScriptStep] = useState<ScriptStep>({ step: 0, check: undefined })
+  // start at -1 to autoplay script that gets loaded
+  // start at 0 if you want the user to have to click for it to start
+  const [scriptStep, setScriptStep] = useState<number>(-1)
   const [script, setScript] = useState<SceneScript>([])
   const [scriptAnswers, setScriptAnswers] = useState<any>({})
+  const [scriptCheck, setScriptCheck] = useState<CheckFunction>(undefined)
 
   const [sceneText, setSceneText] = useState<string>("")
   const [sceneBackground, setSceneBackground] = useState<SceneBackground>(undefined)
@@ -70,6 +72,15 @@ export const TextEngine = () => {
   }
 
   useEffect(() => {
+    if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
+      setScript(test_script)
+      setScriptAnswers(test_script_answers)
+      setScriptStep(0)
+      setScriptCheck(undefined)
+    }
+  }, [])
+
+  useEffect(() => {
     window.addEventListener('keydown', UserEventListener)
 
     return () => {
@@ -78,85 +89,83 @@ export const TextEngine = () => {
   }, [sceneDecision, isTextRendering])
 
   useEffect(() => {
-    if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
-      setScript(test_script)
-      setScriptAnswers(test_script_answers)
-      setScriptStep({ step: 0, check: undefined })
-    }
-  }, [])
-
-  useEffect(() => {
     if (script.length === 0) return
 
-    const currentScriptStep = script[scriptStep.step]
-    
+    const currentScriptStep = script[scriptStep]
+
+    //check actions that alter engine rendering
     if (Array.isArray(currentScriptStep)) {
       switch (currentScriptStep[0]) {
-        case ActionTypes.bg:
-          const actionImageArray: ActionImageArray = currentScriptStep as ActionImageArray
-          const backgroundImageData: StaticImageData = actionImageArray[1]
-
-          if (!backgroundImageData) {
-            setIsShowingOverlay(true)
-          } else {
-            setSceneBackground(backgroundImageData)
-            setIsShowingOverlay(false)
-          }
-
-          SetScriptStep(setScriptStep, "increment")
-          break
-        case ActionTypes.char:
-        case ActionTypes.echar:
-        case ActionTypes.rchar:
-          const actionCharacterArray: ActionCharacterArray = currentScriptStep as ActionCharacterArray
-          SetSceneCharacters(setSceneCharacters, currentScriptStep[0], actionCharacterArray)
-          SetScriptStep(setScriptStep, "increment")
-          break
-        case ActionTypes.qa:
-          const actionDecisionArray: ActionDecisionArray = currentScriptStep as ActionDecisionArray
-          const decisionChoices: DecisionSelection = actionDecisionArray.slice(1) as DecisionSelection
-          setSceneDecision(decisionChoices)
-          break
         case ActionTypes.check:
           const actionCheckArray: ActionCheckArray = currentScriptStep as ActionCheckArray
           const checkFunction: CheckFunction = actionCheckArray[1] as CheckFunction
-          SetScriptStep(setScriptStep, "check", undefined, checkFunction)
-          break
+          setScriptCheck(() => checkFunction)
+          SetScriptStep(setScriptStep, "increment")
+          return
         case ActionTypes.rcheck:
-          SetScriptStep(setScriptStep, "rcheck")
-          break
-        case ActionTypes.sfx:
-          const actionSfxArray: ActionSfxArray = currentScriptStep as ActionSfxArray
-          AudioService(`/sfx/${actionSfxArray[1]}`)
+          setScriptCheck(undefined)
           SetScriptStep(setScriptStep, "increment")
-          break
-        case ActionTypes.script:
-          const actionScriptArray: ActionScriptArray = currentScriptStep as ActionScriptArray
-          setIsShowingOverlay(true)
-          setScript(actionScriptArray[1])
-          setScriptAnswers(actionScriptArray[2])
-          SetScriptStep(setScriptStep, "reset")
-          SetSceneCharacters(setSceneCharacters, "clear")
-          break
-        case ActionTypes.name:
-          const actionNameArray: ActionCharacterArray = currentScriptStep as ActionCharacterArray
-          setSceneName(actionNameArray[1])
-          SetScriptStep(setScriptStep, "increment")
-          break
-        default:
-          //This is to skip actions that don't exist either because of a typo or not removed from script.
-          SetScriptStep(setScriptStep, "increment")
-          break
+          return
+      }
+    }   
+
+    // standard engine actions
+    if (!scriptCheck || scriptCheck()) {
+      if (Array.isArray(currentScriptStep)) {
+        switch (currentScriptStep[0]) {
+          case ActionTypes.bg:
+            const actionImageArray: ActionImageArray = currentScriptStep as ActionImageArray
+            const backgroundImageData: StaticImageData = actionImageArray[1]
+  
+            if (!backgroundImageData) {
+              setIsShowingOverlay(true)
+            } else {
+              setSceneBackground(backgroundImageData)
+              setIsShowingOverlay(false)
+            }
+  
+            SetScriptStep(setScriptStep, "increment")
+            break
+          case ActionTypes.char:
+          case ActionTypes.echar:
+          case ActionTypes.rchar:
+            const actionCharacterArray: ActionCharacterArray = currentScriptStep as ActionCharacterArray
+            SetSceneCharacters(setSceneCharacters, currentScriptStep[0], actionCharacterArray)
+            SetScriptStep(setScriptStep, "increment")
+            break
+          case ActionTypes.qa:
+            const actionDecisionArray: ActionDecisionArray = currentScriptStep as ActionDecisionArray
+            const decisionChoices: DecisionSelection = actionDecisionArray.slice(1) as DecisionSelection
+            setSceneDecision(decisionChoices)
+            break
+          case ActionTypes.sfx:
+            const actionSfxArray: ActionSfxArray = currentScriptStep as ActionSfxArray
+            AudioService(`/sfx/${actionSfxArray[1]}`)
+            SetScriptStep(setScriptStep, "increment")
+            break
+          case ActionTypes.script:
+            const actionScriptArray: ActionScriptArray = currentScriptStep as ActionScriptArray
+            setIsShowingOverlay(true)
+            setScript(actionScriptArray[1])
+            setScriptAnswers(actionScriptArray[2])
+            SetScriptStep(setScriptStep, "reset")
+            SetSceneCharacters(setSceneCharacters, "clear")
+            break
+          case ActionTypes.name:
+            const actionNameArray: ActionCharacterArray = currentScriptStep as ActionCharacterArray
+            setSceneName(actionNameArray[1])
+            SetScriptStep(setScriptStep, "increment")
+            break
+          default:
+            //This is to skip actions that don't exist either because of a typo or not removed from script.
+            SetScriptStep(setScriptStep, "increment")
+            break
+        }
+      } else {
+        setSceneText(currentScriptStep)
       }
     } else {
-      // TODO: conditional rendering only works for text.
-      // Wrap this whole useEffect to check for conditional rendering.
-      // make sure rcheck can still be called
-      if (!scriptStep.check || scriptStep.check()) {
-        setSceneText(currentScriptStep)
-      } else {
-        SetScriptStep(setScriptStep, "increment")
-      }
+      SetScriptStep(setScriptStep, "increment")
     }
   }, [scriptStep])
 
