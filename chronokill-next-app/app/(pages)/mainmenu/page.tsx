@@ -1,12 +1,13 @@
 "use client"
-import { MouseEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import Image from "next/image"
 import { useRouter } from 'next/navigation'
 
 import { Button, Header } from "../../components"
 
 import styles from "./styles.module.css"
 
-export const MainMenu = () => {
+const MainMenu = () => {
   const [playerName, setPlayerName] = useState<string>('')
   const [isShowingPopup, setIsShowingPopup] = useState<boolean>(false)
   const [isNameRequired, setIsNameRequired] = useState<boolean>(false)
@@ -63,7 +64,14 @@ export const MainMenu = () => {
     <Header showBackButton={false} />
     <div className={styles.rectangle}>
       <div className={styles.header}>
-        <img src="/logo.png" alt="Logo" className={styles.logo} />
+        <Image
+            priority
+						src="/logo.png"
+						alt="Logo"
+            width={200}
+            height={200}
+						className={styles.logo}
+					/>
         <h1 className={styles.h1}>MAIN MENU</h1>
       </div>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { MouseEvent, useEffect, useState } from "react"
+import { MouseEvent, useCallback, useEffect, useState } from "react"
 import { StaticImageData } from 'next/image'
 
 import { test_script, test_script_answers } from "../../scripts/test_script"
@@ -40,11 +40,9 @@ import styles from './styles.module.css'
 //formally Ehhngine
 export const TextEngine = () => {
   // TODO: Change this to a useReducer.
-  // start at -1 to autoplay script that gets loaded
-  // start at 0 if you want the user to have to click for it to start
-  const [scriptStep, setScriptStep] = useState<number>(-1)
-  const [script, setScript] = useState<SceneScript>([])
-  const [scriptAnswers, setScriptAnswers] = useState<any>({})
+  const [scriptStep, setScriptStep] = useState<number>(0)
+  const [script, setScript] = useState<SceneScript>(test_script)
+  const [scriptAnswers, setScriptAnswers] = useState<any>(test_script_answers)
   const [scriptCheck, setScriptCheck] = useState<CheckFunction>(undefined)
 
   const [sceneText, setSceneText] = useState<string>("")
@@ -60,11 +58,9 @@ export const TextEngine = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false)
   const [popupMessage, setPopupMessage] = useState('')
   
-  const UserEventListener = (event: KeyboardEvent | MouseEvent<HTMLDivElement>) => {
-    if (isPopupVisible) {
-      return
-    }
-    
+  const UserEventListener = useCallback((event: KeyboardEvent | MouseEvent<HTMLDivElement>) => {
+    if (isPopupVisible) return
+
     if (isTextRendering) {
       setIsSkippingTextRendering(true)
       return
@@ -77,16 +73,7 @@ export const TextEngine = () => {
     } else {
       MouseEventHandler(setScriptStep, event, disable)
     }
-  }
-
-  useEffect(() => {
-    if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
-      setScript(test_script)
-      setScriptAnswers(test_script_answers)
-      setScriptStep(0)
-      setScriptCheck(undefined)
-    }
-  }, [])
+  }, [sceneDecision, isTextRendering])
 
   useEffect(() => {
     window.addEventListener('keydown', UserEventListener)
@@ -94,7 +81,7 @@ export const TextEngine = () => {
     return () => {
       window.removeEventListener('keydown', UserEventListener)
     }
-  }, [sceneDecision, isTextRendering])
+  }, [UserEventListener])
 
   useEffect(() => {
     if (script.length === 0) return
@@ -189,7 +176,7 @@ export const TextEngine = () => {
     } else {
       SetScriptStep(setScriptStep, "increment")
     }
-  }, [scriptStep])
+  }, [script, scriptStep])
 
   return (
     <div className={styles.textEngineWrapper} onClick={UserEventListener} >

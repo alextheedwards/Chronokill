@@ -1,23 +1,16 @@
-"use client";
-import { useState, useEffect, ChangeEvent } from "react";
-import { Button, Header } from "../../components";
-import DropDownProfile from "../../components/DropDownProfile/page";
-import styles from "./styles.module.css";
-import { FontSizeOption } from "../../constants";
+"use client"
+import { useState, useEffect, ChangeEvent } from "react"
 
-export const Options = () => {
-  const [mute, setMute] = useState(false) //set up mute
-  const [previousVolume, setPreviousVolume] = useState<number>(0.0) //set up the previous volume to get back to it
-  const [selectedFontSize, setSelectedFontSize] = useState(FontSizeOption[0])
-  const [volume, setVolume] = useState(0.5)
+import { Button, Header, DropDownProfile } from "../../components"
+import { FontSizeOptions } from "../../constants"
 
-  const handleSelectedChange = (
-    selected: any,
-    updateState: React.Dispatch<React.SetStateAction<any>>
-  ) => {
-    updateState(selected);
-    
-  }
+import styles from "./styles.module.css"
+
+const Options = () => {
+  const [mute, setMute] = useState<boolean>(false)
+  const [previousVolume, setPreviousVolume] = useState<number>(0.0)
+  const [selectedFontSize, setSelectedFontSize] = useState<string>("")
+  const [volume, setVolume] = useState<number>(0.5)
 
   useEffect(() => {
     if (!localStorage.getItem("volume")) return
@@ -27,16 +20,15 @@ export const Options = () => {
     setVolume(volume)
   }, [])
 
-   const onVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newVolume = e.target.value;
+  const onVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newVolume = e.target.value
     localStorage.setItem("volume", newVolume)
     setVolume(parseFloat(newVolume))
-    setMute(false);
+    setMute(false)
   }
 
-  // handling mute 
   const onMuteChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const isMuted = e.target.checked;
+    const isMuted = e.target.checked
     setMute(!isMuted)
     if (mute) {
       setPreviousVolume(volume)
@@ -49,21 +41,24 @@ export const Options = () => {
   }
 
   return (
-    <div className={`${styles.gameContainer}`}>
+    <div className={styles.gameContainer}>
       <div className={styles.bg}></div>
+
       <Header showBackButton={false} />
+
       <div className={styles.rectangle}>
         <div className={styles.header}>
           <h1 className={styles.h1}>OPTIONS</h1>
         </div>
+
         <form className={styles.form}>
           <DropDownProfile
-            options={FontSizeOption}
-            selected={selectedFontSize}
-            onSelectedChange={handleSelectedChange}
-            useState={setSelectedFontSize}
-          />
+            options={FontSizeOptions}
+            value={selectedFontSize}
+            setValue={setSelectedFontSize} />
+
           <p>Volume</p>
+
           <input
             type="range"
             id="volume"
@@ -72,25 +67,24 @@ export const Options = () => {
             max="1.0"
             step="0.1"
             value={volume}
-            onChange={onVolumeChange}
-          />
+            onChange={onVolumeChange} />
+
           <div className={styles.darkModeToggle}>
             <div className={styles.checkboxContainer}>
               <input
                 type="checkbox"
                 checked={mute}
                 onChange={onMuteChange}
-                className={`${styles.checkbox} ${mute ? styles.mutedCheckbox : ''}`}
-              />
+                className={`${styles.checkbox} ${mute ? styles.mutedCheckbox : ''}`} />
               <label>Mute</label>
             </div>
           </div>
+
           <Button href="../mainmenu">Main Menu</Button>
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Options;
-
+export default Options
