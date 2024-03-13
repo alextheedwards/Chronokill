@@ -162,7 +162,10 @@ export const TextEngine = () => {
             break
         }
       } else {
-        setSceneText(currentScriptStep)
+        const text = currentScriptStep as string
+        const playerName = localStorage.getItem("playerName") ?? "Player"
+        const replacedText = text.replace(/<PlayerName>/g, playerName)
+        setSceneText(replacedText)
       }
     } else {
       SetScriptStep(setScriptStep, "increment")

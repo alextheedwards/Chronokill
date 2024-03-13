@@ -12,7 +12,6 @@ import imgSimon from '../../public/actors/simon.png'
 import imgRebecca from '../../public/actors/rebecca.png'
 import imgOscar from '../../public/actors/oscar.png'
 
-
 const ActorBill: SceneCharacter = {
   name: "Bill",
   color: "#ff0000",
@@ -73,12 +72,14 @@ export const monday_script: SceneScript = [
   ["bg", bgReception],
   ["char", ActorRebecca],
 
-  "Good morning, are you [NAME]? Just take a seat, the boss will be here any minute.",
+  "You walk up to the receptionist and introduce yourself as a new Cyber Security intern.",
+
+  "Ah, good morning <PlayerName>. We've been expecting you. Just take a seat, the boss will be here any minute.",
   "A few minutes later…",
 
   ["char", ActorBill],
 
-  "Hey there! Welcome to Cronosoft! My name's Bill, I own the place. You're our new Cyber Security consultant, right? Nice to meet you, [NAME]. We're glad to have you on our team. Let me take you to your desk.",
+  "Hey there! Welcome to Cronosoft! My name's Bill, I own the place. Nice to meet you, <PlayerName>. We're glad to have you on our team. Let me take you to your desk.",
 
   ["rchar", ActorRebecca],
   ["bg", bgPlayerDesk],
@@ -102,13 +103,12 @@ export const monday_script: SceneScript = [
 
   ["bg", bgReception],
 
-  "Here's reception.  Rebecca here organises all sorts of things, like client meetings, office parties and social events.",
-
+  "Here's reception. You've already met Rebecca.",
   ["char", ActorRebecca],
   ["rchar", ActorSimon],
   ["char", ActorSimonMirror],
 
-  "Oh, hi! How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
+  "How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
 
   ["rchar", ActorRebecca],
   ["bg", bgLunchRoom],
@@ -116,7 +116,11 @@ export const monday_script: SceneScript = [
   "The best part of the office. Let's sit down here, there's some stuff I need to fill you in on.",
   "So, the business started focusing on cybersecurity awareness recently after an attack a few months ago - some emails were leaked after an employee used a weak password. All things considered, it wasn't that bad, but it really shook the executives up, which led them to hire you.",
 
-  //FADE, TIMESKIP TO LUNCH
+  ["bg", undefined],
+
+  "",
+  ". . .",
+
   "…And that's lunch. I'll let you get talking to the others, we'll meet back in an hour.",
 
   ["rchar", ActorSimon],
@@ -125,7 +129,7 @@ export const monday_script: SceneScript = [
 
   ["char", ActorOscar],
 
-  "You're the new IT guy, right? [NAME]? Good to meet you. I already see plenty of Simon, so I'm sure we'll be working together pretty often.",
+  "You're the new cyber intern, right? <PlayerName>? Good to meet you. I already see plenty of Simon, so I'm sure we'll be working together pretty often.",
 
   ["rchar", ActorOscar],
 
