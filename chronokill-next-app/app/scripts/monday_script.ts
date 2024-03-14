@@ -1,6 +1,7 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
 import { ActionTypes } from '../constants'
+import { tuesday_script, tuesday_script_answers } from './tuesday_script'
 
 import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
@@ -214,6 +215,7 @@ export const monday_script: SceneScript = [
   "You made sure to stay vigilant to these threats, well done!", //IF RIGHT CHOICES MADE
   "We could have more to deal with tomorrow, but that's us for today. Have a nice evening, we'll regroup tomorrow morning.",
 
+  [ActionTypes.script, tuesday_script, tuesday_script_answers]
 ]
 
 export default monday_script

@@ -1,6 +1,7 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
 import { ActionTypes } from '../constants'
+import { thursday_script, thursday_script_answers } from './thursday_script'
 
 import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
@@ -62,6 +63,7 @@ import imgOscar from '../../public/actors/oscar.png'
   }
 
   export const wednesday_script: SceneScript = [
+    ". . .",
 
     [ActionTypes.bg, bgReception],
     [ActionTypes.char, ActorRebecca],
@@ -111,7 +113,7 @@ import imgOscar from '../../public/actors/oscar.png'
     "Bill whispers something to Simon, and hurriedly leaves the room. Simon makes himself busy.",//NARRATOR
 
     //FADE TO RECEPTION
-    [ActionTypes.bg, bgReception]
+    [ActionTypes.bg, bgReception],
     [ActionTypes.char, ActorBill],//needs changed to police man
     [ActionTypes.char, ActorSimon],//needs changed to police man mirror
 
