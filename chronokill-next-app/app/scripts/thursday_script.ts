@@ -62,7 +62,8 @@ import imgOscar from '../../public/actors/oscar.png'
   }
 
   export const thursday_script: SceneScript = [
-
+  ". . .",
+  
     [ActionTypes.bg, bgReception],
     [ActionTypes.char, ActorSimon],
 

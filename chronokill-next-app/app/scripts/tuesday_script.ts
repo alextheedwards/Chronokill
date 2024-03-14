@@ -1,6 +1,7 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
 import { ActionTypes } from '../constants'
+import { wednesday_script, wednesday_script_answers } from './wednesday_script'
 
 import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
@@ -14,7 +15,7 @@ import imgRebecca from '../../public/actors/rebecca.png'
     name: "Simon",
     color: "#ff0000",
     image: imgSimon,
-    styles: []
+    styles: ["centre-right",]
   }
   
   const ActorSimonMirror: SceneCharacter = {
@@ -55,6 +56,8 @@ import imgRebecca from '../../public/actors/rebecca.png'
   }
 
   export const tuesday_script: SceneScript = [
+    ". . .",
+    
     [ActionTypes.bg, bgPlayerDesk],
     [ActionTypes.char, ActorSimon],
   

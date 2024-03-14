@@ -29,6 +29,7 @@ const ActorSimon: SceneCharacter = {
   }
 
   export const friday_script: SceneScript = [
+    ". . .",
 
     ["bg", bgPlayerDesk],
     ["char", ActorSimon],
@@ -112,7 +113,7 @@ const ActorSimon: SceneCharacter = {
     "This was a difficult first week for you, I'm sure. You had to make some difficult decisions, but we came out on top in the end. We'd be happy to keep you on to help prevent any further attacks. Now get back to work ",
 
     //FAIL STATE
-    "The decisions you’ve made over the past week have tanked Chronosoft's reputation. Now we have to bring in an external cybersecurity company to clean things up and save face. Thankfully, you're still on probation. You're fired.",
+    "The decisions you've made over the past week have tanked Chronosoft's reputation. Now we have to bring in an external cybersecurity company to clean things up and save face. Thankfully, you're still on probation. You're fired.",
 
   ]
 
