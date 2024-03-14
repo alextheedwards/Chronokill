@@ -34,13 +34,19 @@ Special thanks to Dr David Cutting, Dr Maria Angela Ferrario, Dr Steve Jones and
 
 Image Assets by Freepik:
 
+Actors:
 <a href="https://www.freepik.com/free-vector/flat-working-day-scenes-collection_14064667.htm">Office workers</a>
+<a href="https://www.freepik.com/free-vector/young-police-man-uniform-with-object-element-works_29006482.htm">Police Man (jcomp)</a>
+
+Backgrounds:
 <a href="https://www.freepik.com/free-vector/reception-interior-with-lift-modern-foyer-room-with-desk-illumination-couch-elevator-door_12029568.htm">Reception (upklyak)</a>
 <a href="https://www.freepik.com/free-vector/office-background-design_9694098.htm">Office Desk 1 (pikisuperstar)</a>
 <a href="https://www.freepik.com/free-vector/office-background-theme_9694099.htm">Office Desk 2 (pikisuperstar)</a>
+<a href="https://www.freepik.com/free-vector/principals-office-school-with-desk-chairs-bookcase-showcase-with-sport-trophies-cartoon-empty-interior-headmaster-cabinet-meeting-talking-with-teachers-pupils-parents_9498821.htm">Boss' Office (upklyak)</a>
 <a href="https://www.freepik.com/free-vector/set-cartoon-control-room-with-server-racks-table-database-data-center-hosting_2669646.htm">Server Room (vectorpocket)</a>
 <a href="https://www.freepik.com/free-vector/cozy-cafe-with-modern-design-illustration_3296507.htm">Lunch Room (katemangostar)</a>
 <a href="https://www.freepik.com/free-vector/front-view-long-table-office-video-conferencing-background_9462454.htm">Boardroom (pikisuperstar)</a>
+<a href="https://www.freepik.com/free-vector/principals-office-school-with-desk-chairs-bookcase-showcase-with-sport-trophies-cartoon-empty-interior-headmaster-cabinet-meeting-talking-with-teachers-pupils-parents_9498821.htm">Boss' Office (upklyak)</a>
 
 ## Licence
 
