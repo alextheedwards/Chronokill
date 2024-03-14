@@ -106,10 +106,10 @@ export const TextEngine = () => {
           SetScriptStep(setScriptStep, "increment")
           break
         case ActionTypes.char:
+        case ActionTypes.echar:
         case ActionTypes.rchar:
           const actionCharacterArray: ActionCharacterArray = currentScriptStep as ActionCharacterArray
-          const charType: string = currentScriptStep[0] === "char" ? "add" : "remove"
-          SetSceneCharacters(setSceneCharacters, charType, actionCharacterArray)
+          SetSceneCharacters(setSceneCharacters, currentScriptStep[0], actionCharacterArray)
           SetScriptStep(setScriptStep, "increment")
           break
         case ActionTypes.qa:
@@ -144,7 +144,7 @@ export const TextEngine = () => {
           SetScriptStep(setScriptStep, "increment")
           break
         default:
-          //This is to skip actions that dont exist either because of a typo or not removed from script.
+          //This is to skip actions that don't exist either because of a typo or not removed from script.
           SetScriptStep(setScriptStep, "increment")
           break
       }

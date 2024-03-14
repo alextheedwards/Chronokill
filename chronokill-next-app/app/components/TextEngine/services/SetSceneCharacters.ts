@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react"
 import { SceneCharacter } from "../../../interfaces"
 import ActionCharacterArray from "../../../types/ActionCharacterArray"
+import { ActionTypes } from "../../../constants"
 
 export const SetSceneCharacters = (
   setSceneCharacters: Dispatch<SetStateAction<SceneCharacter[]>>,
@@ -14,7 +15,7 @@ export const SetSceneCharacters = (
   }
 
   switch (type) {
-    case "add":
+    case ActionTypes.char:
       setSceneCharacters(currentSceneCharacters => {
         const tempCharactersArray = [...currentSceneCharacters]
         const isCharacterExisting = tempCharactersArray.some(character => character.name === sceneCharacter.name)
@@ -26,7 +27,20 @@ export const SetSceneCharacters = (
         return tempCharactersArray
       })
       break
-    case "remove":
+    case ActionTypes.echar:
+      setSceneCharacters(currentSceneCharacters => {
+        const tempCharactersArray = [...currentSceneCharacters]
+
+        if (sceneCharacter) {
+          if (actionCharacterArray && actionCharacterArray.length > 2) {
+            sceneCharacter.styles = actionCharacterArray[2]
+          }
+        }
+
+        return tempCharactersArray
+      })
+      break
+    case ActionTypes.rchar:
       setSceneCharacters(currentSceneCharacters => {
         let tempCharactersArray = [...currentSceneCharacters]
         tempCharactersArray = tempCharactersArray.filter(character => character.name !== sceneCharacter.name)

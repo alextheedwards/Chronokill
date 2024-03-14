@@ -1,12 +1,8 @@
-import Link from 'next/link'
+import MainMenu from "./(pages)/mainmenu/page";
 
 const RootPage = async () => {
 	return (
-		<div>
-			<h1>Root Page</h1>
-			<Link href="/login">Login</Link>
-			<Link href="/mainmenu">Main Menu</Link>
-		</div> 
+		<MainMenu />
 	)
 }
 

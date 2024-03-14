@@ -2,7 +2,8 @@ import { SceneCharacter } from "../interfaces/SceneCharacter"
 
 export type ActionCharacterArray = [
   string,
-  SceneCharacter
+  SceneCharacter,
+  string[]
 ]
 
 export default ActionCharacterArray
