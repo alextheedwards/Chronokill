@@ -144,7 +144,7 @@ export const TextEngine = () => {
           SetScriptStep(setScriptStep, "increment")
           break
         default:
-          //This is to skip actions that dont exist either because of a typo or not removed from script.
+          //This is to skip actions that don't exist either because of a typo or not removed from script.
           SetScriptStep(setScriptStep, "increment")
           break
       }
