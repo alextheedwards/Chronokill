@@ -1,9 +1,12 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
 import { ActionTypes } from '../constants'
+import { friday_script} from './friday_script'
 
 import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
+import bgBossOffice from '../../public/backgrounds/bossOffice.jpg'
+import bgBoardroom from '../../public/backgrounds/boardroom.png'
 
 import imgBill from '../../public/actors/bill.png'
 import imgSimon from '../../public/actors/simon.png'
@@ -46,9 +49,9 @@ import imgOscar from '../../public/actors/oscar.png'
   }
 
   const decision1: string[] = [
-    "Focus on responce",//+
-    "Focus on consequences",//-
-    "No accountability",//-
+    "Focus On Responce",//+
+    "Focus On Consequences",//-
+    "No Accountability",//-
   ]
   
   const decision2: string[] = [
@@ -70,12 +73,14 @@ import imgOscar from '../../public/actors/oscar.png'
     "On arrival, Simon sits expecting you.", //NARRATOR
     "Well, it took me until 4am, but the attack has been completely neutralised. The work's not all done yet. Still. Come on into the boardroom, we have some stuff to run by you.",
 
-    [ActionTypes.bg, bgReception], //needs changed to boardroom
+    [ActionTypes.bg, bgBoardroom], 
     [ActionTypes.char, ActorSimonMirror],
     [ActionTypes.char, ActorBill],
 
     "We're creating a press release for the attack but can't decide between these three options.",
-    "“Focus on response” would emphasise all we've done to respond to the attack. It would admit to the damages and promise more preventative measures but wouldn't detail the consequences. “Focus on consequences” would be more honest, mentioning the types of information leaked. The public could take it either way, but it could lead to more people taking this kind of thing seriously. “No accountability” is a real gamble. If we pull it off, it will do the least damage to Chronosoft's reputation, but it could easily backfire on us. Which press release should we use?", //options for press release
+    "“Focus on response” would emphasise all we've done to respond to the attack. It would admit to the damages and promise more preventative measures but wouldn't detail the consequences.", 
+    "“Focus on consequences” would be more honest, mentioning the types of information leaked. The public could take it either way, but it could lead to more people taking this kind of thing seriously.",
+    "“No accountability” is a real gamble. If we pull it off, it will do the least damage to Chronosoft's reputation, but it could easily backfire on us. Which press release should we use?", //options for press release",
 
     [ActionTypes.check, () => thursday_script_answers.decision1 === decision1[0]], //focus on repsonse
 
@@ -114,6 +119,7 @@ import imgOscar from '../../public/actors/oscar.png'
 
     "Well, that might just be the end of it. Hopefully tomorrow we'll hear more about how everything went. See you then.",
 
+    [ActionTypes.script, friday_script]
   ]
 
   export default thursday_script

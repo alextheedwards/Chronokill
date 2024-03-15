@@ -3,7 +3,7 @@
 import { MouseEvent, useEffect, useState } from "react"
 import { StaticImageData } from 'next/image'
 
-import { test_script, test_script_answers } from "../../scripts/test_script"
+import { monday_script, monday_script_answers } from "../../scripts/monday_script"
 import { ActionTypes } from '../../constants'
 import { 
   TextPanel, 
@@ -79,8 +79,8 @@ export const TextEngine = () => {
 
   useEffect(() => {
     if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
-      setScript(test_script)
-      setScriptAnswers(test_script_answers)
+      setScript(monday_script)
+      setScriptAnswers(monday_script_answers)
       setScriptStep({ step: 0, check: undefined })
     }
   }, [])

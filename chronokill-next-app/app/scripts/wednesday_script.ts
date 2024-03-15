@@ -12,6 +12,8 @@ import imgBill from '../../public/actors/bill.png'
 import imgSimon from '../../public/actors/simon.png'
 import imgOscar from '../../public/actors/oscar.png'
 import imgPolice from '../../public/actors/police.png'
+import imgRebecca from '../../public/actors/rebecca.png'
+
 import {tuesday_script_answers} from "./tuesday_script";
   
   const ActorSimon: SceneCharacter = {
@@ -39,6 +41,13 @@ const ActorPolice: SceneCharacter = {
   name: "Police",
   color: "#ff0000",
   image: imgPolice,
+  styles: ["centre-right"]
+}
+
+const ActorRebecca: SceneCharacter = {
+  name: "Rebecca",
+  color: "#ff0000",
+  image: imgRebecca,
   styles: ["centre-right"]
 }
 
@@ -90,6 +99,7 @@ const ActorPolice: SceneCharacter = {
 
     "They have everything, Oscar. Our bank details, sensitive client information, someone even got into the server room last night. If this gets out...",
     "You try to think of a way out of this.",//NARRATOR
+    
     [ActionTypes.qa, "decision1", decision1],
 
     [ActionTypes.rcheck],
@@ -97,7 +107,7 @@ const ActorPolice: SceneCharacter = {
     [ActionTypes.rchar, ActorSimon],
 
     [ActionTypes.check, () => wednesday_script_answers.decision1 === decision1[0]], //inform stakeholders
-    [ActionTypes.bg, bgBossOffice],//needs changed to bosses office
+    [ActionTypes.bg, bgBossOffice],
     [ActionTypes.char, ActorBill],
 
     "You recognise your responsibility to the stakeholders of the company, and that a transparent response is required. You give Bill the following statement to announce: ",//NARRATOR
@@ -120,9 +130,8 @@ const ActorPolice: SceneCharacter = {
     [ActionTypes.rchar, ActorSimon],
 
     //FADE TO RECEPTION
-    [ActionTypes.bg, bgReception]
-    [ActionTypes.char, ActorBill],//needs changed to police man
-    [ActionTypes.char, ActorSimon],//needs changed to police man mirror
+    [ActionTypes.bg, bgReception],
+    [ActionTypes.char, ActorRebecca],
 
     "The police arrive at the office.",//NARRATOR
     "ARREST MADE: Name: [NAME] Crime: Financial Misconduct, Data Protection Awaiting trial ",
@@ -141,7 +150,7 @@ const ActorPolice: SceneCharacter = {
     "You quickly realise your mistake. Simon gives Bill the following statement to announce:",//NARRATOR
     "Chronosoft's security measures have been breached by a ransomware attack. Company records, employee personal information and more are expected to leak. More to announce soon. ",
 
-    [ActionTypes.bg, bgBossOffice], //needs changed to boss' office
+    [ActionTypes.bg, bgBossOffice], 
     [ActionTypes.char, ActorBill],
 
     "This is going to be a legal nightmare. The next statement will have to be very carefully worded.",
@@ -174,6 +183,8 @@ const ActorPolice: SceneCharacter = {
     [ActionTypes.char, ActorSimon],
 
     "I'll need to pull an all-nighter tonight to make sure we're okay for tomorrow. See you then.",
+
+    [ActionTypes.script, thursday_script, thursday_script_answers]
 
   ]
 
