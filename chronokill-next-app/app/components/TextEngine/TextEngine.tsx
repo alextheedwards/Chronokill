@@ -168,6 +168,10 @@ export const TextEngine = () => {
           setPopupMessage(currentScriptStep[1])
           setIsPopupVisible(true)
           break
+        case ActionTypes.endgame:
+          setPopupMessage(currentScriptStep[1])
+          setIsPopupVisible(true)
+          break
         default:
             //This is to skip actions that don't exist either because of a typo or not removed from script.
             SetScriptStep(setScriptStep, "increment")
