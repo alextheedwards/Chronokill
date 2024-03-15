@@ -6,6 +6,7 @@ import { wednesday_script, wednesday_script_answers } from './wednesday_script'
 import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
 import bgServerRoom from '../../public/backgrounds/serverRoom.png'
+import bgBossOffice from '../../public/backgrounds/bossOffice.jpg'
 
 import imgBill from '../../public/actors/bill.png'
 import imgSimon from '../../public/actors/simon.png'
@@ -62,7 +63,7 @@ import imgRebecca from '../../public/actors/rebecca.png'
     [ActionTypes.char, ActorSimon],
   
     "Hey, how's things? I'm sure you're wrecked after yesterday. I wouldn't worry though; we've never had to handle two security risks in the same day before. Things should be back to normal now. ",
-    "A notification appears on Simon's computer, interrupting the conversation. Simon opens some kind of control panel. Glancing at it, you can only make out a mass of red text. Simon suddenly turns red himself.", //NARRATOR
+    "A notification appears on Simon;s computer, interrupting the conversation. Simon opens some kind of control panel. Glancing at it, you can only make out a mass of red text. Simon suddenly turns red himself.", //NARRATOR
     "Oh no. We've been breached, and it's spreading fast. Quickly, save your work. We need to act now.",
     "On the first sign of a cyber attack, you decide on the first course of action", //NARRATOR
     
@@ -114,25 +115,25 @@ import imgRebecca from '../../public/actors/rebecca.png'
     "It's a bit too late for that now. We can worry about that later, right now we need to get as much information as we can on this breach.",
 
     //TIMESKIP FADE
-    "Well, it ticks all the boxes for a network breach. The vulnerability was found in the office's smart thermostat, its connection was completely unencrypted. The hackers are most likely taking everything they can get.",
-    "The entire server room is compromised, we'll need to isolate the servers to stop the hackers from getting anything else.",
-
     [ActionTypes.bg, bgServerRoom],
     [ActionTypes.char, ActorSimon],
 
+    "Well, it ticks all the boxes for a network breach. The vulnerability was found in the office's smart thermostat, its connection was completely unencrypted. The hackers are most likely taking everything they can get.",
+    "The entire server room is compromised, we'll need to isolate the servers to stop the hackers from getting anything else.",
     "Simon lifts the protective cover for the server room's Emergency Power Off button.", //NARRATOR
     "It's a drastic measure, but we have to take it. When our personal information is at risk, worrying about data loss is insignificant. ", 
     "Simon pushes the button. The servers turn off. ", //NARRATOR
     "Now that's handled, we better let Bill know.",
 
     [ActionTypes.rcheck],
-    [ActionTypes.bg, bgReception], //needs changed to boss' office
+    [ActionTypes.bg, bgBossOffice], 
     [ActionTypes.char, ActorSimonMirror],
     [ActionTypes.char, ActorBill],
 
     "The network was breached by a hacker exploiting a backdoor in the thermostat. They've had access to confidential documents for an unknown amount of time. We've shut down the servers to stop the spread, but Chronosoft needs to be prepared to respond to this.",
     "Bill is visibly panicked.", //NARRATOR
     "This couldn't have happened at a worse time. We're losing a lot of labour in keeping things shut down, you need to get over this as soon as possible.",
+    //Code "Name" in below code
     "We need to do everything we can to keep our data safe. I'm doing everything I can to stop the spread but can't be everywhere at once. We know for sure that keycard IDs were taken, [NAME] will need to implement some temporary security procedures.",
 
     [ActionTypes.qa, "decision2", decision2],
@@ -152,7 +153,7 @@ import imgRebecca from '../../public/actors/rebecca.png'
     [ActionTypes.bg, bgReception],
     [ActionTypes.char, ActorRebecca],
 
-    "That's no problem, I'll get these handed out as soon as I can. ", //NARRATOR
+    "That's no problem, I'll get these handed out as soon as I can.", //NARRATOR
 
     [ActionTypes.rcheck],
     [ActionTypes.bg, bgPlayerDesk],
@@ -160,6 +161,7 @@ import imgRebecca from '../../public/actors/rebecca.png'
 
     "I've done all I can to stop the spread, at this point I'm just crossing my fingers for the computers to just work tomorrow. I'm sure this wasn't the job you were expecting, but we're in it now. The next couple of days are going to decide the future of this company, what matters is that we see it through to the end. I'll see you tomorrow.", //NARRATOR
 
+    [ActionTypes.script, wednesday_script, wednesday_script_answers]
   ]
 
   export default tuesday_script

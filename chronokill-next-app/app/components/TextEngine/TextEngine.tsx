@@ -3,7 +3,7 @@
 import { MouseEvent, useEffect, useState } from "react"
 import { StaticImageData } from 'next/image'
 
-import { test_script, test_script_answers } from "../../scripts/test_script"
+import { monday_script, monday_script_answers } from "../../scripts/monday_script"
 import { ActionTypes } from '../../constants'
 import { 
   TextPanel, 
