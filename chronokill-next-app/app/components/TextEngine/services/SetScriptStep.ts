@@ -1,36 +1,21 @@
 import { Dispatch, SetStateAction } from "react"
-import { ScriptStep } from "../../../interfaces"
-import { CheckFunction, SceneScript } from "../../../types"
 
-// TODO: Fix this whole function to just take an object with the data instead. Maybe check if useReducer fixes it first though.
 export const SetScriptStep = (
-  setScriptStep: Dispatch<SetStateAction<ScriptStep>>, 
-  type: string, 
-  scene?: SceneScript,
-  checkFunction?: CheckFunction
+  setScriptStep: Dispatch<SetStateAction<number>>, 
+  type: string,
 ) => {
-  setScriptStep((currentStep: ScriptStep) => {
-    const tempStep: ScriptStep = {...currentStep}
+  setScriptStep((currentStep: number) => {
+    let tempStep: number = currentStep
     
     switch (type) {
       case "increment":
-        tempStep.step = tempStep.step + 1
+        tempStep = tempStep + 1
         break
       case "decrement":
-        tempStep.step = tempStep.step - 1
+        tempStep = tempStep - 1
         break
       case "reset":
-        tempStep.step = 0
-        break
-      case "check":
-        if(checkFunction) {
-          tempStep.check = checkFunction
-          tempStep.step = tempStep.step + 1
-        }
-        break
-      case "rcheck":
-        tempStep.check = undefined
-        tempStep.step = tempStep.step + 1
+        tempStep = 0
         break
     }
 

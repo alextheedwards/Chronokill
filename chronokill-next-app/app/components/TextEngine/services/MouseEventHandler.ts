@@ -1,10 +1,9 @@
 import { Dispatch, SetStateAction, MouseEvent } from "react"
 
-import { ScriptStep } from "../../../interfaces"
 import { SetScriptStep } from "."
 
 export const MouseEventHandler = (
-  setScriptStep: Dispatch<SetStateAction<ScriptStep>>, 
+  setScriptStep: Dispatch<SetStateAction<number>>, 
   event: MouseEvent<HTMLDivElement>,
   disable: boolean
 ) => {

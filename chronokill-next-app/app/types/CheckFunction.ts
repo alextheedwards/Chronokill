@@ -1,3 +1,3 @@
-export type CheckFunction = () => boolean
+export type CheckFunction = (() => boolean) | undefined
 
 export default CheckFunction
