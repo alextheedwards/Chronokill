@@ -72,6 +72,7 @@ export const monday_script: SceneScript = [
   ". . .",
 
   [ActionTypes.bg, bgReception],
+  "You walk up to the receptionist and introduce yourself as the new Cyber Security Intern.",
   [ActionTypes.char, ActorRebecca],
 
   "You walk up to the receptionist and introduce yourself as a new Cyber Security intern.",
@@ -105,13 +106,13 @@ export const monday_script: SceneScript = [
 
   [ActionTypes.bg, bgReception],
 
-  "Here's reception.  Rebecca here organises all sorts of things, like client meetings, office parties and social events.",
+  "Here's reception.  Rebecca here organises all sorts of things.",
 
   [ActionTypes.char, ActorRebecca],
   [ActionTypes.rchar, ActorSimon],
   [ActionTypes.char, ActorSimonMirror],
 
-  "How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
+  "Oh, we've already met! How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
 
   [ActionTypes.rchar, ActorRebecca],
   [ActionTypes.bg, bgLunchRoom],

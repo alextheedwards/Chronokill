@@ -62,7 +62,7 @@ import imgRebecca from '../../public/actors/rebecca.png'
     [ActionTypes.bg, bgPlayerDesk],
     [ActionTypes.char, ActorSimon],
   
-    "Hey, how's things? I'm sure you're wrecked after yesterday. I wouldn't worry though; we've never had to handle two security risks in the same day before. Things should be back to normal now. ",
+    "Hey, how's things? That was some first day. I wouldn't worry though; we've never had to handle two security risks in the same day before. Things should be back to normal now. ",
     "A notification appears on Simon;s computer, interrupting the conversation. Simon opens some kind of control panel. Glancing at it, you can only make out a mass of red text. Simon suddenly turns red himself.", //NARRATOR
     "Oh no. We've been breached, and it's spreading fast. Quickly, save your work. We need to act now.",
     "On the first sign of a cyber attack, you decide on the first course of action", //NARRATOR

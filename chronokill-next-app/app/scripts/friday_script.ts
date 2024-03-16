@@ -107,7 +107,7 @@ const ActorSimon: SceneCharacter = {
 
     [ActionTypes.check, () => wednesday_script_answers.decision1 === "Cover Up Attack"],
     //[COVER UP ATTACK] 
-    "(this is an instafail option! the game should end on thursday if the player chose this!)",
+    "(if you're reading this ingame, something went wrong! the game should end on thursday if the player chose to cover up the attack!)",
 
     [ActionTypes.check, () => wednesday_script_answers.decision1 === "Pay Ransom"],
     //[PAY RANSOM] 
