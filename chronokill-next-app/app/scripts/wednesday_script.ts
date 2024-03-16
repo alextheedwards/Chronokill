@@ -144,7 +144,7 @@ const ActorRebecca: SceneCharacter = {
 
     [ActionTypes.char, ActorOscar],
     "You argue that the ransom demand is surprisingly small and would be less expensive to the company than any legal fees if this were to come out. Oscar agrees with you, offering to front the money himself to speed things up. ",//NARRATOR
-    "YANKEE, PLEASE DELIVER $20000 FURTHER IN NEGOTIABLE AMERICAN CURRENCY",
+    "FINANCIAL CONGLOMERATE, PLEASE DELIVER $20000 FURTHER IN NEGOTIABLE AMERICAN CURRENCY",
     [ActionTypes.rchar, ActorOscar],
     [ActionTypes.char, ActorSimon],
     "You quickly realise your mistake. Simon gives Bill the following statement to announce:",//NARRATOR

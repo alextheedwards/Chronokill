@@ -73,14 +73,15 @@ export const monday_script: SceneScript = [
   ". . .",
 
   [ActionTypes.bg, bgReception],
+  "You walk up to the receptionist and introduce yourself as the new Cyber Security Intern.",
   [ActionTypes.char, ActorRebecca],
-
-  "Good morning, are you [NAME]? Just take a seat, the boss will be here any minute.",
+  
+  "Ah, good morning [NAME]. Just take a seat, the boss will be here any minute.",
   "A few minutes later…",
 
   [ActionTypes.char, ActorBill],
 
-  "Hey there! Welcome to Cronosoft! My name's Bill, I own the place. You're our new Cyber Security consultant, right? Nice to meet you, [NAME]. We're glad to have you on our team. Let me take you to your desk.",
+  "Hey there! Welcome to Cronosoft! My name's Bill, I own the place. Nice to meet you, [NAME]. We're glad to have you on our team. Let me take you to your desk.",
 
   [ActionTypes.rchar, ActorRebecca],
   [ActionTypes.bg, bgPlayerDesk],
@@ -104,13 +105,13 @@ export const monday_script: SceneScript = [
 
   [ActionTypes.bg, bgReception],
 
-  "Here's reception.  Rebecca here organises all sorts of things, like client meetings, office parties and social events.",
+  "Here's reception.  Rebecca here organises all sorts of things.",
 
   [ActionTypes.char, ActorRebecca],
   [ActionTypes.rchar, ActorSimon],
   [ActionTypes.char, ActorSimonMirror],
 
-  "Oh, hi! How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
+  "Oh, we've already met! How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
 
   [ActionTypes.rchar, ActorRebecca],
   [ActionTypes.bg, bgLunchRoom],
@@ -127,7 +128,7 @@ export const monday_script: SceneScript = [
 
   [ActionTypes.char, ActorOscar],
 
-  "You're the new IT guy, right? [NAME]? Good to meet you. I already see plenty of Simon, so I'm sure we'll be working together pretty often.",
+  "You're the new cyber intern, right? [NAME]? Good to meet you. I already see plenty of Simon, so I'm sure we'll be working together pretty often.",
 
   [ActionTypes.rchar, ActorOscar],
 
