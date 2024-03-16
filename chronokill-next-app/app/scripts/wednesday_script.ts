@@ -77,7 +77,7 @@ const ActorRebecca: SceneCharacter = {
     [ActionTypes.bg, bgPlayerDesk],
 
     "You sit at your desk and boot up your computer. It loads a photo of a poorly rendered skeleton graphic, and a list of demands:", //NARRATOR
-    "YANKEE, WE HAVE YOUR ADDRESSES, YOUR PASSWORDS, YOUR BANK DETAILS PLEASE DELIVER $5000 IN NEGOTIABLE AMERICAN CURRENCY KINDLY YOU HAVE TWELVE HOURS", //SCAMMERS
+    "FINANCIAL CONGLOMERATE, WE HAVE YOUR ADDRESSES, YOUR PASSWORDS, YOUR BANK DETAILS PLEASE DELIVER $5000 IN NEGOTIABLE AMERICAN CURRENCY KINDLY YOU HAVE TWELVE HOURS", //SCAMMERS
     "At the bottom of the page are a Bitcoin address and several publicly hosted links named ChronosoftPayslips.zip.",//NARRATOR
     "Oscar approaches you.",
 
