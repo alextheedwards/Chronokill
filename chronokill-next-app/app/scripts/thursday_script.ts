@@ -24,14 +24,14 @@ import imgSimon from '../../public/actors/simon.png'
   }
 
   const decision1: string[] = [
-    "Focus On Response",//+
-    "Focus On Consequences",//-
-    "No Accountability",//-
+    "Focus On Response",
+    "Focus On Consequences",
+    "No Accountability",
   ]
   
   const decision2: string[] = [
-    "Invest in cybersecurity training material",//++
-    "Change everyone's password",//-
+    "Invest in cybersecurity training material",
+    "Change everyone's password",
   ]
 
   export const thursday_script_answers: any = {
