@@ -9,7 +9,8 @@ import {
   TextPanel, 
   DecisionModal, 
   CharacterPanel,
-  BackgroundImage
+  BackgroundImage,
+  EndGamePopup
 } from './components'
 import { 
   SetScriptStep, 
@@ -55,8 +56,15 @@ export const TextEngine = () => {
   const [isTextRendering, setIsTextRendering] = useState<boolean>(false)
   const [isSkippingTextRendering, setIsSkippingTextRendering] = useState<boolean>(false)
   const [isShowingOverlay, setIsShowingOverlay] = useState<boolean>(true)
+
+  const [isPopupVisible, setIsPopupVisible] = useState(false)
+  const [popupMessage, setPopupMessage] = useState('')
   
   const UserEventListener = (event: KeyboardEvent | MouseEvent<HTMLDivElement>) => {
+    if (isPopupVisible) {
+      return
+    }
+    
     if (isTextRendering) {
       setIsSkippingTextRendering(true)
       return
@@ -156,7 +164,15 @@ export const TextEngine = () => {
             setSceneName(actionNameArray[1])
             SetScriptStep(setScriptStep, "increment")
             break
-          default:
+          case ActionTypes.endgame:
+          setPopupMessage(currentScriptStep[1])
+          setIsPopupVisible(true)
+          break
+        case ActionTypes.endgame:
+          setPopupMessage(currentScriptStep[1])
+          setIsPopupVisible(true)
+          break
+        default:
             //This is to skip actions that don't exist either because of a typo or not removed from script.
             SetScriptStep(setScriptStep, "increment")
             break
@@ -193,6 +209,11 @@ export const TextEngine = () => {
         sceneText={sceneText}
         scriptAnswers={scriptAnswers}
         setScriptStep={setScriptStep}
+      />
+      <EndGamePopup
+        isVisible={isPopupVisible}
+        onClose={() => setIsPopupVisible(false)}
+        message={popupMessage}
       />
     </div>
   )
