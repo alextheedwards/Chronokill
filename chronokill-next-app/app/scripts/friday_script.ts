@@ -178,15 +178,13 @@ const ActorSimon: SceneCharacter = {
     score -= 1, // bad answer
     console.log(score), //Print score (test)
 
-    // Potentially if statement?
-    
     //WIN STATE
-    [ActionTypes.endgame, score >= 5, "Pass"],
+    [ActionTypes.check, ()=> score >= 5],
     "This was a difficult first week for you, I'm sure. You had to make some difficult decisions, but we came out on top in the end. We'd be happy to keep you on to help prevent any further attacks. Now get back to work ",
-    [ActionTypes.endgame, "Well Done: You have successfully passed the training material, you got a score of " + score],
-    
+    [ActionTypes.endgame, "Well Done: You have passed the cybersecurity training course, you got a score of " + score],
+
     //FAIL STATE
-    [ActionTypes.endgame, score <5,  "Failed"],
+    [ActionTypes.check, ()=> score <5],
     "The decisions you've made over the past week have tanked Chronosoft's reputation. Now we have to bring in an external cybersecurity company to clean things up and save face. Thankfully, you're still on probation. You're fired.",
     [ActionTypes.endgame, "Game Over: You have failed the training material, you got a score of " + score],
   ]
