@@ -136,7 +136,10 @@ const ActorRebecca: SceneCharacter = {
     "The police arrive at the office.",//NARRATOR
     "ARREST MADE: Name: [NAME] Crime: Financial Misconduct, Data Protection Awaiting trial ",
 
-    //TODO: INSTAFAIL HERE
+    [ActionTypes.rchar, ActorPolice],
+
+    //INSTAFAIL
+    [ActionTypes.endgame, "Game Over: You were arrested"],
 
     ["check", () => wednesday_script_answers.decision1 === decision1[2]], //pay ransom
 
