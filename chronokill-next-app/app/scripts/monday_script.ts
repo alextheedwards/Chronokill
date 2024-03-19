@@ -18,7 +18,7 @@ const ActorBill: SceneCharacter = {
   name: "Bill",
   color: "#ff0000",
   image: imgBill,
-  styles: ["centre-left", "mirror"]
+  styles: ["centre-left"]
 }
 
 const ActorSimon: SceneCharacter = {
@@ -26,15 +26,6 @@ const ActorSimon: SceneCharacter = {
   color: "#ff0000",
   image: imgSimon,
   styles: ["centre-right"]
-}
-
-// this has a flaw
-// if you add ActorSimonMirror, then remove ActorSimon, it removes both
-const ActorSimonMirror: SceneCharacter = {
-  name: "Simon",
-  color: "#ff0000",
-  image: imgSimon,
-  styles: ["centre-left", "mirror"]
 }
 
 const ActorRebecca: SceneCharacter = {
@@ -72,7 +63,6 @@ export const monday_script: SceneScript = [
   ". . .",
 
   [ActionTypes.bg, bgReception],
-  "You walk up to the receptionist and introduce yourself as the new Cyber Security Intern.",
   [ActionTypes.char, ActorRebecca],
 
   "You walk up to the receptionist and introduce yourself as a new Cyber Security intern.",
@@ -97,7 +87,6 @@ export const monday_script: SceneScript = [
 
   [ActionTypes.bg, undefined],
 
-  "",
   ". . .",
 
   [ActionTypes.bg, bgServerRoom],
@@ -108,9 +97,8 @@ export const monday_script: SceneScript = [
 
   "Here's reception.  Rebecca here organises all sorts of things.",
 
+  [ActionTypes.echar, ActorRebecca, ["centre-left","mirror"]],
   [ActionTypes.char, ActorRebecca],
-  [ActionTypes.rchar, ActorSimon],
-  [ActionTypes.char, ActorSimonMirror],
 
   "Oh, we've already met! How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
 
@@ -189,6 +177,7 @@ export const monday_script: SceneScript = [
   "You get a notification from Oscar about a suspicious email. You and Simon walk around to their desk.",
 
   [ActionTypes.bg, bgOscarDesk],
+  [ActionTypes.echar, ActorOscar, ["left"]],
   [ActionTypes.char, ActorOscar],
 
   "Hey, I got this weird looking email. It says it's from HR, but there's an external message warning. It sounds urgent. What should I do about it?",

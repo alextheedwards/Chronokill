@@ -16,34 +16,27 @@ import imgRebecca from '../../public/actors/rebecca.png'
     name: "Simon",
     color: "#ff0000",
     image: imgSimon,
-    styles: ["centre-right",]
-  }
-  
-  const ActorSimonMirror: SceneCharacter = {
-    name: "Simon",
-    color: "#ff0000",
-    image: imgSimon,
-    styles: []
+    styles: ["centre-right"]
   }
   
   const ActorRebecca: SceneCharacter = {
     name: "Rebecca",
     color: "#ff0000",
     image: imgRebecca,
-    styles: []
+    styles: ["centre-left", "mirror"]
   }
 
   const ActorBill: SceneCharacter = {
-    name: "Rebecca",
+    name: "Bill",
     color: "#ff0000",
     image: imgBill,
-    styles: []
+    styles: ["centre-left"]
   }
 
   const decision1: string[] = [
-    "Immediatley disconnect infected device",
-    "Access threat",
-    "Impliment strict link filter",
+    "Immediately disconnect infected device",
+    "Assess threat",
+    "Implement strict link filter",
   ]
   
   const decision2: string[] = [
@@ -63,13 +56,13 @@ import imgRebecca from '../../public/actors/rebecca.png'
     [ActionTypes.char, ActorSimon],
   
     "Hey, how's things? That was some first day. I wouldn't worry though; we've never had to handle two security risks in the same day before. Things should be back to normal now. ",
-    "A notification appears on Simon;s computer, interrupting the conversation. Simon opens some kind of control panel. Glancing at it, you can only make out a mass of red text. Simon suddenly turns red himself.", //NARRATOR
+    "A notification appears on Simon's computer, interrupting the conversation. Simon opens some kind of control panel. Glancing at it, you can only make out a mass of red text. Simon suddenly turns red himself.", //NARRATOR
     "Oh no. We've been breached, and it's spreading fast. Quickly, save your work. We need to act now.",
     "On the first sign of a cyber attack, you decide on the first course of action", //NARRATOR
     
     [ActionTypes.rchar, ActorSimon],
     [ActionTypes.qa, "decision1", decision1],
-    [ActionTypes.check, () => tuesday_script_answers.decision1 === decision1[0]], //immediatley disconnect device
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === decision1[0]], //immediately disconnect device
 
     "While Simon is busy preparing a response, you try to minimize the risk of exposure by disconnecting all devices on the network. As you finish the task, Simon notices your work.", //NARRATOR
 
@@ -89,7 +82,7 @@ import imgRebecca from '../../public/actors/rebecca.png'
     "Simon pushes the button. The servers turn off. ", //NARRATOR
     "Now that's handled, we better let Bill know.",
     
-    ["ActionTypes.check", () => tuesday_script_answers.decision1 === decision1[1]], //access threat
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === decision1[1]], //assess threat
 
     "To get a better understanding of the attack and its consequences, you decide to assess the threat before acting.", //NARRATOR
 
@@ -127,7 +120,7 @@ import imgRebecca from '../../public/actors/rebecca.png'
 
     [ActionTypes.rcheck],
     [ActionTypes.bg, bgBossOffice], 
-    [ActionTypes.char, ActorSimonMirror],
+    [ActionTypes.char, ActorSimon],
     [ActionTypes.char, ActorBill],
 
     "The network was breached by a hacker exploiting a backdoor in the thermostat. They've had access to confidential documents for an unknown amount of time. We've shut down the servers to stop the spread, but Chronosoft needs to be prepared to respond to this.",
@@ -141,6 +134,8 @@ import imgRebecca from '../../public/actors/rebecca.png'
 
     "You recognise security as Chronosoft's main priority. You decide to have a word with Rebecca.", //NARRATOR
 
+    [ActionTypes.rchar, ActorSimon],
+    [ActionTypes.rchar, ActorBill],
     [ActionTypes.bg, bgReception],
     [ActionTypes.char, ActorRebecca],
 
@@ -157,6 +152,7 @@ import imgRebecca from '../../public/actors/rebecca.png'
 
     [ActionTypes.rcheck],
     [ActionTypes.bg, bgPlayerDesk],
+    [ActionTypes.rchar, ActorRebecca],
     [ActionTypes.char, ActorSimon],
 
     "I've done all I can to stop the spread, at this point I'm just crossing my fingers for the computers to just work tomorrow. I'm sure this wasn't the job you were expecting, but we're in it now. The next couple of days are going to decide the future of this company, what matters is that we see it through to the end. I'll see you tomorrow.", //NARRATOR

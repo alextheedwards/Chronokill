@@ -1,13 +1,11 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
 import { ActionTypes } from '../constants'
-import { monday_script, monday_script_answers } from './monday_script'
-import { tuesday_script, tuesday_script_answers } from './tuesday_script'
-import { wednesday_script, wednesday_script_answers } from './wednesday_script'
-import { thursday_script, thursday_script_answers } from './thursday_script'
+import { monday_script_answers } from './monday_script'
+import { tuesday_script_answers } from './tuesday_script'
+import { wednesday_script_answers } from './wednesday_script'
+import { thursday_script_answers } from './thursday_script'
 
-
-import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
 import bgBoardroom from '../../public/backgrounds/boardroom.png'
 
@@ -18,21 +16,14 @@ const ActorSimon: SceneCharacter = {
     name: "Simon",
     color: "#ff0000",
     image: imgSimon,
-    styles: []
-  }
-  
-  const ActorSimonMirror: SceneCharacter = {
-    name: "Simon",
-    color: "#ff0000",
-    image: imgSimon,
-    styles: []
+    styles: ["centre-right"]
   }
 
   const ActorBill: SceneCharacter = {
-    name: "Rebecca",
+    name: "Bill",
     color: "#ff0000",
     image: imgBill,
-    styles: []
+    styles: ["centre-left"]
   }
 
   let score = 0;
@@ -41,9 +32,10 @@ const ActorSimon: SceneCharacter = {
     ". . .",
 
     ["bg", bgPlayerDesk],
-    ["char", ActorSimon],
   
     "You show up to work and sit at your desk. ",//NARRATOR
+
+    ["char", ActorSimon],
 
     "Hey, Bill wants a word with you. You should head over to the boardroom.",
 
@@ -81,7 +73,7 @@ const ActorSimon: SceneCharacter = {
     //[VERIFY LINK AUTHENTICITY] 
     "When Oscar got that phishing email, you noticed the fake website. Thanks to that, we were able to block that domain from our network.",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Immediatley disconnect infected device"],
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Immediately disconnect infected device"],
     //[IMMEDIATELY DISCONNECT DEVICES]
     "On the first sign of a cyber-attack, your first move was to disconnect all devices from the network. Your decision cost us significant data loss, since we didn't have a recent backup.",
 
@@ -89,7 +81,7 @@ const ActorSimon: SceneCharacter = {
     //[ASSESS THREAT]
     "On the first sign of a cyber-attack, your first move was to assess the threat. This careful thinking allowed us to prepare a proper response. ",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Impliment Strict Link Filter"],
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Implement Strict Link Filter"],
     //[IMPLEMENT STRICT LINK FILTER] 
     "On the first sign of a cyber-attack, your first move was to implement a link filter. It's like closing the door after the horse has bolted.",
 
@@ -125,7 +117,7 @@ const ActorSimon: SceneCharacter = {
     //[FOCUS ON RESPONSE] 
     "The public's response to our press release focusing on our response to the attack was received well. They saw us as doing everything we could to protect our employees.",
 
-    [ActionTypes.check, () => thursday_script_answers.decision1 === "Focus On Consequenses"],
+    [ActionTypes.check, () => thursday_script_answers.decision1 === "Focus On Consequences"],
     //[FOCUS ON CONSEQUENCES] 
     "The public's response to our press release focusing on the consequences of the attack was received poorly. They saw us as incompetent for allowing this to happen.",
 
