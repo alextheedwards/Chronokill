@@ -1,31 +1,55 @@
 "use client";
-import styles from "./styles.module.css";
+import { useState, useEffect, ChangeEvent } from "react";
 import { Button, Header } from "../../components";
-import { useState } from "react";
 import DropDownProfile from "../../components/DropDownProfile/page";
+import styles from "./styles.module.css";
+import { FontSizeOption } from "../../constants";
 
 export const Options = () => {
-  const fontSizeOption = [
-    { value: "", label: "Font Size" },
-    { value: "1", label: "Small" },
-    { value: "2", label: "Normal" },
-    { value: "3", label: "Big" },
-  ];
-
-  const [selectedFontSize, setSelectedFontSize] = useState(fontSizeOption[0]);
-  const [darkMode, setDarkMode] = useState(false);
-  const [mute, setMute] = useState(false);
+  const [mute, setMute] = useState(false) //set up mute
+  const [previousVolume, setPreviousVolume] = useState<number>(0.0) //set up the previous volume to get back to it
+  const [selectedFontSize, setSelectedFontSize] = useState(FontSizeOption[0])
+  const [volume, setVolume] = useState(0.5)
 
   const handleSelectedChange = (
     selected: any,
     updateState: React.Dispatch<React.SetStateAction<any>>
   ) => {
     updateState(selected);
-    console.log(selected);
-  };
+    
+  }
+
+  useEffect(() => {
+    if (!localStorage.getItem("volume")) return
+
+    const storedVolume = localStorage.getItem("volume") as string
+    const volume = parseFloat(storedVolume)  
+    setVolume(volume)
+  }, [])
+
+   const onVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newVolume = e.target.value;
+    localStorage.setItem("volume", newVolume)
+    setVolume(parseFloat(newVolume))
+    setMute(false);
+  }
+
+  // handling mute 
+  const onMuteChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const isMuted = e.target.checked;
+    setMute(!isMuted)
+    if (mute) {
+      setPreviousVolume(volume)
+      setVolume(0.0)
+      localStorage.setItem("volume", volume.toString())
+    } else {
+      setVolume(previousVolume)
+      localStorage.setItem("volume", previousVolume.toString())
+    }
+  }
 
   return (
-    <div>
+    <div className={`${styles.gameContainer}`}>
       <div className={styles.bg}></div>
       <Header showBackButton={false} />
       <div className={styles.rectangle}>
@@ -34,31 +58,31 @@ export const Options = () => {
         </div>
         <form className={styles.form}>
           <DropDownProfile
-            options={fontSizeOption}
+            options={FontSizeOption}
             selected={selectedFontSize}
             onSelectedChange={handleSelectedChange}
             useState={setSelectedFontSize}
           />
           <p>Volume</p>
-          <input type="range" id="volume" name="volume" min="0" max="11" />
+          <input
+            type="range"
+            id="volume"
+            name="volume"
+            min="0.0"
+            max="1.0"
+            step="0.1"
+            value={volume}
+            onChange={onVolumeChange}
+          />
           <div className={styles.darkModeToggle}>
-            <div className={styles.darkModeCheckbox}>
+            <div className={styles.checkboxContainer}>
               <input
                 type="checkbox"
                 checked={mute}
-                onChange={() => setMute(!mute)}
+                onChange={onMuteChange}
+                className={`${styles.checkbox} ${mute ? styles.mutedCheckbox : ''}`}
               />
               <label>Mute</label>
-            </div>
-          </div>
-          <div className={styles.darkModeToggle}>
-            <div className={styles.darkModeCheckbox}>
-              <input
-                type="checkbox"
-                checked={darkMode}
-                onChange={() => setDarkMode(!darkMode)}
-              />
-              <label>Dark Mode</label>
             </div>
           </div>
           <Button href="../mainmenu">Main Menu</Button>
@@ -69,3 +93,4 @@ export const Options = () => {
 };
 
 export default Options;
+

@@ -148,7 +148,10 @@ export const TextEngine = () => {
             break
           case ActionTypes.sfx:
             const actionSfxArray: ActionSfxArray = currentScriptStep as ActionSfxArray
-            AudioService(`/sfx/${actionSfxArray[1]}`)
+            const audioVolumeString = localStorage.getItem("volume");
+            console.log(audioVolumeString)
+            const audioVolume = audioVolumeString ? parseFloat(audioVolumeString) : 0.5;
+            AudioService(`/sfx/${actionSfxArray[1]}`, audioVolume)
             SetScriptStep(setScriptStep, "increment")
             break
           case ActionTypes.script:

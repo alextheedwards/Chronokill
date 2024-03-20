@@ -10,14 +10,12 @@
 }
 
 .rectangle {
-    
     min-width: 320px;
     max-width: 475px;
     flex-shrink: 0;
     border: 4px solid #232D47;
     background: linear-gradient(180deg, #C2D3FF 0%, rgba(197, 212, 250, 0.75) 74.5%, rgba(200, 212, 242, 0.50) 100%);
     padding: 15px;
-
     top: 50%;
     left: 50%;
     position: absolute;
@@ -26,9 +24,7 @@
     -o-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-
     color: #232D47;
-    /* font-family: "Monomaniac One"; */
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -43,23 +39,22 @@
 }
 
 .form select {
-    
- border-radius: 5px;
-  border: 4px solid #232D47;
-  background-color: #ACC3FF;
-  color: #232D47;
-  width: 100%;
-  margin: 0 auto;
-  display: block;
-  margin-bottom: 15px;
-  padding: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+    border-radius: 5px;
+    border: 4px solid #232D47;
+    background-color: #ACC3FF;
+    color: #232D47;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 15px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
-.form input{
+.form input {
     width: 100%;
     background-color: #faf7f7; 
     color: #070707; 
@@ -69,7 +64,6 @@
     display: flex;
     align-items: center;
     margin-top: 5px; 
-    
 }
 
 .darkModeCheckbox {
@@ -102,7 +96,59 @@
     cursor: pointer;
 }
 
-
-.form p:last-child {
-    margin-top: 10px; 
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
+
+.checkboxContainer input {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #555;
+    border-radius: 50%;
+    margin-right: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.checkboxContainer input:checked {
+    background-color: #1e1e1e;
+    border-color: #fff;
+}
+
+.checkboxContainer label {
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+.mutedCheckbox {
+    background-color: black;
+    border-color: black;
+}
+
+.darkModeCheckbox input:checked + label {
+    color: white;
+}
+
+.gameContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0; 
+  }
+
+  .darkMode {
+    background-color: #1e1e1e; 
+    color: #ffffff; 
+  }
+
+  
+ 

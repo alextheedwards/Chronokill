@@ -1,7 +1,7 @@
 
-export const AudioService = (sceneSfx: string) => {
+export const AudioService = (sceneSfx: string, volume: number) => {
   const audio = new Audio(sceneSfx)
-  audio.volume = 0.2
+  audio.volume = volume
 
   const onPlayEnded = () => {
     audio.pause()
