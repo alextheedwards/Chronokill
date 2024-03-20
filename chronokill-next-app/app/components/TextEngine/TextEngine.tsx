@@ -81,8 +81,8 @@ export const TextEngine = () => {
 
   useEffect(() => {
     if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
-      setScript(test_script)
-      setScriptAnswers(test_script_answers)
+      setScript(monday_script)
+      setScriptAnswers(monday_script_answers)
       setScriptStep(0)
       setScriptCheck(undefined)
     }
@@ -186,7 +186,10 @@ export const TextEngine = () => {
             break
         }
       } else {
-        setSceneText(currentScriptStep)
+        const text = currentScriptStep as string
+        const playerName = localStorage.getItem("playerName") ?? "Player"
+        const replacedText = text.replace(/<PlayerName>/g, playerName)
+        setSceneText(replacedText)
       }
     } else {
       SetScriptStep(setScriptStep, "increment")

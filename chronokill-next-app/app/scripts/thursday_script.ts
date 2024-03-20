@@ -80,9 +80,10 @@ import imgOscar from '../../public/actors/oscar.png'
     "We're creating a press release for the attack but can't decide between these three options.",
     "“Focus on response” would emphasise all we've done to respond to the attack. It would admit to the damages and promise more preventative measures but wouldn't detail the consequences.", 
     "“Focus on consequences” would be more honest, mentioning the types of information leaked. The public could take it either way, but it could lead to more people taking this kind of thing seriously.",
-    "“No accountability” is a real gamble. If we pull it off, it will do the least damage to Chronosoft's reputation, but it could easily backfire on us. Which press release should we use?", //options for press release",
+    "“No accountability” is a real gamble. If we pull it off, it will do the least damage to Chronosoft's reputation, but it could easily backfire on us. Which press release should we use?", //options for press release,
+    [ActionTypes.qa, "decision1", decision1],
 
-    [ActionTypes.check, () => thursday_script_answers.decision1 === decision1[0]], //focus on repsonse
+    [ActionTypes.check, () => thursday_script_answers.decision1 === decision1[0]], //focus on response
 
     "You decide that Chronosoft should focus on its response to the attack.", //NARRATOR
     "Definitely the safest option.",
@@ -100,10 +101,12 @@ import imgOscar from '../../public/actors/oscar.png'
     "I agree, actually. If we can come out of this unscathed, the company would be much better off.",
 
     [ActionTypes.rcheck],
+    
     [ActionTypes.bg, bgPlayerDesk],
     [ActionTypes.char, ActorSimon],
 
     "This has been expensive, and we're even more vulnerable to cyber-attacks now. We need some preventative measures, but the budget is limited, and we can only afford to implement one right now. What should it be? ",
+    [ActionTypes.qa, "decision2", decision2],
 
     [ActionTypes.check, () => thursday_script_answers.decision2 === decision2[0]],
 

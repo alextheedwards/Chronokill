@@ -14,12 +14,11 @@ import imgSimon from '../../public/actors/simon.png'
 import imgRebecca from '../../public/actors/rebecca.png'
 import imgOscar from '../../public/actors/oscar.png'
 
-
 const ActorBill: SceneCharacter = {
   name: "Bill",
   color: "#ff0000",
   image: imgBill,
-  styles: ["centre-left", "mirror"]
+  styles: ["centre-left"]
 }
 
 const ActorSimon: SceneCharacter = {
@@ -27,15 +26,6 @@ const ActorSimon: SceneCharacter = {
   color: "#ff0000",
   image: imgSimon,
   styles: ["centre-right"]
-}
-
-// this has a flaw
-// if you add ActorSimonMirror, then remove ActorSimon, it removes both
-const ActorSimonMirror: SceneCharacter = {
-  name: "Simon",
-  color: "#ff0000",
-  image: imgSimon,
-  styles: ["centre-left", "mirror"]
 }
 
 const ActorRebecca: SceneCharacter = {
@@ -73,15 +63,16 @@ export const monday_script: SceneScript = [
   ". . .",
 
   [ActionTypes.bg, bgReception],
-  "You walk up to the receptionist and introduce yourself as the new Cyber Security Intern.",
   [ActionTypes.char, ActorRebecca],
-  
-  "Ah, good morning [NAME]. Just take a seat, the boss will be here any minute.",
+
+  "You walk up to the receptionist and introduce yourself as a new Cyber Security intern.",
+
+  "Ah, good morning <PlayerName>. We've been expecting you. Just take a seat, the boss will be here any minute.",
   "A few minutes later…",
 
   [ActionTypes.char, ActorBill],
 
-  "Hey there! Welcome to Cronosoft! My name's Bill, I own the place. Nice to meet you, [NAME]. We're glad to have you on our team. Let me take you to your desk.",
+  "Hey there! Welcome to Cronosoft! My name's Bill, I own the place. Nice to meet you, <PlayerName>. We're glad to have you on our team. Let me take you to your desk.",
 
   [ActionTypes.rchar, ActorRebecca],
   [ActionTypes.bg, bgPlayerDesk],
@@ -96,7 +87,6 @@ export const monday_script: SceneScript = [
 
   [ActionTypes.bg, undefined],
 
-  "",
   ". . .",
 
   [ActionTypes.bg, bgServerRoom],
@@ -107,9 +97,8 @@ export const monday_script: SceneScript = [
 
   "Here's reception.  Rebecca here organises all sorts of things.",
 
+  [ActionTypes.echar, ActorRebecca, ["centre-left","mirror"]],
   [ActionTypes.char, ActorRebecca],
-  [ActionTypes.rchar, ActorSimon],
-  [ActionTypes.char, ActorSimonMirror],
 
   "Oh, we've already met! How are you settling in? It's all a bit overwhelming on the first day I'm sure, but you'll get the hang of it before you know it.",
 
@@ -119,7 +108,11 @@ export const monday_script: SceneScript = [
   "The best part of the office. Let's sit down here, there's some stuff I need to fill you in on.",
   "So, the business started focusing on cybersecurity awareness recently after an attack a few months ago - some emails were leaked after an employee used a weak password. All things considered, it wasn't that bad, but it really shook the executives up, which led them to hire you.",
 
-  //FADE, TIMESKIP TO LUNCH
+  ["bg", undefined],
+
+  "",
+  ". . .",
+
   "…And that's lunch. I'll let you get talking to the others, we'll meet back in an hour.",
 
   [ActionTypes.rchar, ActorSimon],
@@ -128,7 +121,7 @@ export const monday_script: SceneScript = [
 
   [ActionTypes.char, ActorOscar],
 
-  "You're the new cyber intern, right? [NAME]? Good to meet you. I already see plenty of Simon, so I'm sure we'll be working together pretty often.",
+  "You're the new cyber intern, right? <PlayerName>? Good to meet you. I already see plenty of Simon, so I'm sure we'll be working together pretty often.",
 
   [ActionTypes.rchar, ActorOscar],
 
@@ -184,6 +177,7 @@ export const monday_script: SceneScript = [
   "You get a notification from Oscar about a suspicious email. You and Simon walk around to their desk.",
 
   [ActionTypes.bg, bgOscarDesk],
+  [ActionTypes.echar, ActorOscar, ["left"]],
   [ActionTypes.char, ActorOscar],
 
   "Hey, I got this weird looking email. It says it's from HR, but there's an external message warning. It sounds urgent. What should I do about it?",

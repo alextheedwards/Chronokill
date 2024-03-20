@@ -1,15 +1,16 @@
 // public/components/Button.tsx
-import React from 'react';
-import Link from 'next/link';
-import styles from './styles.module.css';
+import { MouseEventHandler, ReactNode } from 'react'
+import Link from 'next/link'
+
+import styles from './styles.module.css'
 
 interface ButtonProps {
-  children: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  children: ReactNode;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   href?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, onClick, href }) => {
+export const Button = ({ children, onClick, href }: ButtonProps) => {
   const defaultClickHandler = () => {
     // Your default logic here
     console.log('Default button clicked!');

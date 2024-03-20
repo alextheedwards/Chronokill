@@ -73,7 +73,7 @@ const checkNo: SceneScript = [
 
 // Script start
 export const test_script: SceneScript = [
-  "Welcome to the TextEngine default test script.",
+  "Welcome to the TextEngine default tests script, <PlayerName>.",
   `This script will run through all the features available to TextEngine as of ${new Date().toDateString()}.`,
   `This won't make much sense unless you're also looking at the default script file, test_script.js`,
   "We'll run through all the available ActionTypes and things you can do.",

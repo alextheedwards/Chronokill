@@ -20,21 +20,21 @@ import {tuesday_script_answers} from "./tuesday_script";
     name: "Simon",
     color: "#ff0000",
     image: imgSimon,
-    styles: ["mirror"]
+    styles: ["centre-right"]
   }
 
   const ActorOscar: SceneCharacter = {
     name: "Oscar",
     color: "#ff0000",
     image: imgOscar,
-    styles: ["centre-right", "mirror"]
+    styles: ["right", "mirror"]
   }
 
   const ActorBill: SceneCharacter = {
     name: "Bill",
     color: "#ff0000",
     image: imgBill,
-    styles: []
+    styles: ["centre-left"]
   }
 
 const ActorPolice: SceneCharacter = {
@@ -72,7 +72,15 @@ const ActorRebecca: SceneCharacter = {
 
     [ActionTypes.bg, bgReception],
 
+    [ActionTypes.check, () => tuesday_script_answers.decision2 === "Guest passes"],
     "You arrive at the office and scan your guest pass", //NARRATOR
+    [ActionTypes.rcheck],
+
+    [ActionTypes.check, () => tuesday_script_answers.decision2 === "Manually verify access"],
+    [ActionTypes.char, ActorRebecca],
+    "You arrive at the office. Rebecca buzzes you in.",
+    [ActionTypes.rchar, ActorRebecca],
+    [ActionTypes.rcheck],
 
     [ActionTypes.bg, bgPlayerDesk],
 
@@ -85,8 +93,6 @@ const ActorRebecca: SceneCharacter = {
 
     "Oscar approaches you.",
 
-    [ActionTypes.char, ActorSimon],
-
     //Manually Verify Access
     [ActionTypes.check, () => tuesday_script_answers.decision2 === "Manually verify access"],
 
@@ -98,13 +104,13 @@ const ActorRebecca: SceneCharacter = {
     [ActionTypes.check, () => tuesday_script_answers.decision2 === "Guest passes"],
 
     "They have everything, Oscar. Our bank details, sensitive client information, someone even got into the server room last night. If this gets out...",
+
+    [ActionTypes.rcheck],
+
     "You try to think of a way out of this.",//NARRATOR
     
     [ActionTypes.qa, "decision1", decision1],
-
-    [ActionTypes.rcheck],
     [ActionTypes.rchar, ActorOscar],
-    [ActionTypes.rchar, ActorSimon],
 
     [ActionTypes.check, () => wednesday_script_answers.decision1 === decision1[0]], //inform stakeholders
     [ActionTypes.bg, bgBossOffice],
@@ -138,20 +144,21 @@ const ActorRebecca: SceneCharacter = {
 
     [ActionTypes.rchar, ActorPolice],
 
-    //TODO: INSTAFAIL HERE
+    //INSTAFAIL
+    [ActionTypes.endgame, "Game Over: You were arrested"],
 
     ["check", () => wednesday_script_answers.decision1 === decision1[2]], //pay ransom
+    [ActionTypes.bg, bgPlayerDesk],
 
     [ActionTypes.char, ActorOscar],
     "You argue that the ransom demand is surprisingly small and would be less expensive to the company than any legal fees if this were to come out. Oscar agrees with you, offering to front the money himself to speed things up. ",//NARRATOR
     "FINANCIAL CONGLOMERATE, PLEASE DELIVER $20000 FURTHER IN NEGOTIABLE AMERICAN CURRENCY",
     [ActionTypes.rchar, ActorOscar],
     [ActionTypes.char, ActorSimon],
+    [ActionTypes.char, ActorBill],
+    [ActionTypes.bg, bgBossOffice],
     "You quickly realise your mistake. Simon gives Bill the following statement to announce:",//NARRATOR
     "Chronosoft's security measures have been breached by a ransomware attack. Company records, employee personal information and more are expected to leak. More to announce soon. ",
-
-    [ActionTypes.bg, bgBossOffice], 
-    [ActionTypes.char, ActorBill],
 
     "This is going to be a legal nightmare. The next statement will have to be very carefully worded.",
 
@@ -166,13 +173,13 @@ const ActorRebecca: SceneCharacter = {
     "I know Simon hasn't fully secured the network yet, but the stakeholders aren't happy about losing business. I'm not happy about losing business. Can we get the computers back up?",
 
     [ActionTypes.qa, "decision2", decision2],
-    [ActionTypes.check, () => wednesday_script_answers.decision2 === decision2[0]], //manually verify access
+    [ActionTypes.check, () => wednesday_script_answers.decision2 === decision2[0]], //yes
 
     "Thinking about what this is costing the company leads you to agree with him. You reconnect Bill's computer.",//NARRATOR
 
     [ActionTypes.rcheck],
 
-    [ActionTypes.check, () => wednesday_script_answers.decision2 === decision2[1]], //guest passes
+    [ActionTypes.check, () => wednesday_script_answers.decision2 === decision2[1]], //no
 
     "You argue that trying to keep working under a compromised network will lead to further data loss and could let the intrusion spread.",//NARRATOR
     "Yeah, staying on the safe side will probably end up costing less anyway.",

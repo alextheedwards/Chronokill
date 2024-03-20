@@ -39,9 +39,10 @@ const ActorSimon: SceneCharacter = {
     ". . .",
 
     ["bg", bgPlayerDesk],
-    ["char", ActorSimon],
   
     "You show up to work and sit at your desk. ",//NARRATOR
+
+    ["char", ActorSimon],
 
     "Hey, Bill wants a word with you. You should head over to the boardroom.",
 
@@ -77,20 +78,20 @@ const ActorSimon: SceneCharacter = {
     //[VERIFY LINK AUTHENTICITY] 
     "When Oscar got that phishing email, you noticed the fake website. Thanks to that, we were able to block that domain from our network.",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Immediatley disconnect infected device"],
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Immediately disconnect infected device"],
     //[IMMEDIATELY DISCONNECT DEVICES]
     "On the first sign of a cyber-attack, your first move was to disconnect all devices from the network. Your decision cost us significant data loss, since we didn't have a recent backup.",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Access Threat"],
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Assess Threat"],
     //[ASSESS THREAT]
     "On the first sign of a cyber-attack, your first move was to assess the threat. This careful thinking allowed us to prepare a proper response. ",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Impliment Strict Link Filter"],
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Implement Strict Link Filter"],
     //[IMPLEMENT STRICT LINK FILTER] 
     "On the first sign of a cyber-attack, your first move was to implement a link filter. It's like closing the door after the horse has bolted.",
 
     [ActionTypes.check, () => tuesday_script_answers.decision2 === "Manually Verify Access"],
-    //[MANUALLY VERIFY ACCESS
+    //[MANUALLY VERIFY ACCESS]
     "When keycard access was removed, you had Rebecca verify employee access to the office. This helped prevent an unknown bad actor from accessing the premises.",
 
     [ActionTypes.check, () => tuesday_script_answers.decision2 === "Guest Passes"],
@@ -110,18 +111,18 @@ const ActorSimon: SceneCharacter = {
     "After the ransomware demand was made, Oscar convinced you to pay the ransom. I'm glad Oscar offered to pay for it himself, but this was a really unprofessional move.",
 
     [ActionTypes.check, () => wednesday_script_answers.decision2 === "Yes"],
-    //[REBOOT COMPUTERS]
+    //[REBOOT COMPUTERS/YES]
     "You reconnected the computers to the network after I asked you, which led to more employee data being held for ransom. You should have had the expertise to say no.",
 
     [ActionTypes.check, () => wednesday_script_answers.decision2 === "No"],
-    //[REFUSE TO REBOOT COMPUTERS] 
+    //[REFUSE TO REBOOT COMPUTERS/NO] 
     "You refused to reconnect the computers to the network after I asked you. Thank you for correcting me, we could have lost even more data if I had my way.",
 
     [ActionTypes.check, () => thursday_script_answers.decision1 === "Focus On Response"],
     //[FOCUS ON RESPONSE] 
     "The public's response to our press release focusing on our response to the attack was received well. They saw us as doing everything we could to protect our employees.",
 
-    [ActionTypes.check, () => thursday_script_answers.decision1 === "Focus On Consequenses"],
+    [ActionTypes.check, () => thursday_script_answers.decision1 === "Focus On Consequences"],
     //[FOCUS ON CONSEQUENCES] 
     "The public's response to our press release focusing on the consequences of the attack was received poorly. They saw us as incompetent for allowing this to happen.",
 

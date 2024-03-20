@@ -54,3 +54,42 @@
     flex-direction: column; 
     margin-bottom: 20px;
 }
+
+.popupModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background:  #ACC3FF;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #232D47;
+    z-index: 999;
+}
+
+.popup h2 {
+    margin-bottom: 10px;
+}
+
+.popup input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 2px solid #232D47;
+}
+
+.popup button {
+    margin-right: 10px;
+}
