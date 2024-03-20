@@ -100,7 +100,7 @@ export const TextEngine = () => {
     if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
       setScript(monday_script)
       setScriptAnswers(monday_script_answers)
-      setScriptStep({ step: 0, check: undefined })
+      setScriptStep(0)
     }
   }, [])
 

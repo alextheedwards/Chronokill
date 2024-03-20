@@ -18,40 +18,34 @@ const ActorSimon: SceneCharacter = {
     name: "Simon",
     color: "#ff0000",
     image: imgSimon,
-    styles: []
-  }
-  
-  const ActorSimonMirror: SceneCharacter = {
-    name: "Simon",
-    color: "#ff0000",
-    image: imgSimon,
-    styles: []
+    styles: ["centre-right"]
   }
 
   const ActorBill: SceneCharacter = {
-    name: "Rebecca",
+    name: "Bill",
     color: "#ff0000",
     image: imgBill,
-    styles: []
+    styles: ["centre-left"]
   }
 
   export const friday_script: SceneScript = [
+    [ActionTypes.bg, undefined],
+    [ActionTypes.name, undefined],
     ". . .",
 
     ["bg", bgPlayerDesk],
-  
     "You show up to work and sit at your desk. ",//NARRATOR
 
     ["char", ActorSimon],
-
+    [ActionTypes.name, ActorSimon],
     "Hey, Bill wants a word with you. You should head over to the boardroom.",
 
     // FADE TO BOARDROOM
 
-    ["rchar", ActorSimon],
-    ["char", ActorBill],
+    [ActionTypes.rchar, ActorSimon],
+    [ActionTypes.char, ActorBill],
     ["bg", bgBoardroom],
-
+    [ActionTypes.name, ActorBill],
     "Thanks for coming. I wanted to talk to you about your performance this week.",
 
     [ActionTypes.check, () => monday_script_answers.decision1 === "Plug it in"],
@@ -82,31 +76,31 @@ const ActorSimon: SceneCharacter = {
     //[IMMEDIATELY DISCONNECT DEVICES]
     "On the first sign of a cyber-attack, your first move was to disconnect all devices from the network. Your decision cost us significant data loss, since we didn't have a recent backup.",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Assess Threat"],
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Assess threat"],
     //[ASSESS THREAT]
     "On the first sign of a cyber-attack, your first move was to assess the threat. This careful thinking allowed us to prepare a proper response. ",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Implement Strict Link Filter"],
+    [ActionTypes.check, () => tuesday_script_answers.decision1 === "Implement strict link filter"],
     //[IMPLEMENT STRICT LINK FILTER] 
     "On the first sign of a cyber-attack, your first move was to implement a link filter. It's like closing the door after the horse has bolted.",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision2 === "Manually Verify Access"],
+    [ActionTypes.check, () => tuesday_script_answers.decision2 === "Manually verify access"],
     //[MANUALLY VERIFY ACCESS]
     "When keycard access was removed, you had Rebecca verify employee access to the office. This helped prevent an unknown bad actor from accessing the premises.",
 
-    [ActionTypes.check, () => tuesday_script_answers.decision2 === "Guest Passes"],
+    [ActionTypes.check, () => tuesday_script_answers.decision2 === "Guest passes"],
     //[GUEST PASSES] 
     "When keycard access was removed, you had Rebecca distribute guest passes to the staff. I don't know how it happened, but a bad actor was able to access the server room with a guest pass. ",
 
-    [ActionTypes.check, () => wednesday_script_answers.decision1 === "Inform Stakeholders"],
+    [ActionTypes.check, () => wednesday_script_answers.decision1 === "Inform stakeholders"],
     //[INFORM STAKEHOLDERS] 
     "After the ransomware demand was made, you chose to inform the stakeholders immediately. This transparency helped establish a proper response to the attack.",
 
-    [ActionTypes.check, () => wednesday_script_answers.decision1 === "Cover Up Attack"],
+    [ActionTypes.check, () => wednesday_script_answers.decision1 === "Cover up attack"],
     //[COVER UP ATTACK] 
     "(if you're reading this ingame, something went wrong! the game should end on thursday if the player chose to cover up the attack!)",
 
-    [ActionTypes.check, () => wednesday_script_answers.decision1 === "Pay Ransom"],
+    [ActionTypes.check, () => wednesday_script_answers.decision1 === "Pay ransom"],
     //[PAY RANSOM] 
     "After the ransomware demand was made, Oscar convinced you to pay the ransom. I'm glad Oscar offered to pay for it himself, but this was a really unprofessional move.",
 
@@ -138,9 +132,11 @@ const ActorSimon: SceneCharacter = {
     //[CHANGE EVERYONE’S PASSWORD]
     "To prevent further attacks, you recommended we change everyone's password... Was this a joke?",
 
+    [ActionTypes.rcheck],
 
     //WIN STATE
-    "This was a difficult first week for you, I'm sure. You had to make some difficult decisions, but we came out on top in the end. We'd be happy to keep you on to help prevent any further attacks. Now get back to work ",
+    "This was a difficult first week for you, I'm sure. You had to make some difficult decisions, but we came out on top in the end. We'd be happy to keep you on to help prevent any further attacks.",
+    "Now get back to work.",
 
 
     //FAIL STATE
