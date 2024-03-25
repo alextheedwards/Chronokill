@@ -35,6 +35,8 @@ Special thanks to Dr David Cutting, Dr Maria Angela Ferrario, Dr Steve Jones and
 Image Assets by Freepik:
 
 <a href="https://www.freepik.com/free-vector/flat-working-day-scenes-collection_14064667.htm">Office workers</a>
+
+Backgrounds:
 <a href="https://www.freepik.com/free-vector/reception-interior-with-lift-modern-foyer-room-with-desk-illumination-couch-elevator-door_12029568.htm">Reception (upklyak)</a>
 <a href="https://www.freepik.com/free-vector/office-background-design_9694098.htm">Office Desk 1 (pikisuperstar)</a>
 <a href="https://www.freepik.com/free-vector/office-background-theme_9694099.htm">Office Desk 2 (pikisuperstar)</a>

@@ -3,7 +3,7 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from "react"
 import { StaticImageData } from 'next/image'
 
-import { test_script, test_script_answers } from "../../scripts/test_script"
+import { monday_script, monday_script_answers } from "../../scripts/monday_script"
 import { ActionTypes } from '../../constants'
 import { 
   TextPanel, 
@@ -50,8 +50,8 @@ export const TextEngine = () => {
 
   // TODO: Change this to a useReducer.
   const [scriptStep, setScriptStep] = useState<number>(0)
-  const [script, setScript] = useState<SceneScript>(test_script)
-  const [scriptAnswers, setScriptAnswers] = useState<any>(test_script_answers)
+  const [script, setScript] = useState<SceneScript>(monday_script)
+  const [scriptAnswers, setScriptAnswers] = useState<any>(monday_script_answers)
   const [scriptCheck, setScriptCheck] = useState<CheckFunction>(undefined)
 
   const [sceneText, setSceneText] = useState<string>("")
@@ -82,7 +82,7 @@ export const TextEngine = () => {
     } else {
       MouseEventHandler(setScriptStep, event, disable)
     }
-  }, [sceneDecision, isTextRendering])
+  },[sceneDecision, isTextRendering])
 
   useEffect(() => {
     window.addEventListener('keydown', UserEventListener)
@@ -91,6 +91,15 @@ export const TextEngine = () => {
       window.removeEventListener('keydown', UserEventListener)
     }
   }, [UserEventListener])
+
+
+  useEffect(() => {
+    if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
+      setScript(monday_script)
+      setScriptAnswers(monday_script_answers)
+      setScriptStep(0)
+    }
+  }, [])
 
   useEffect(() => {
     if (script.length === 0) return
