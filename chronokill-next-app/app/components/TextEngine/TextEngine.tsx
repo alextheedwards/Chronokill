@@ -1,6 +1,6 @@
 'use client'
 
-import { MouseEvent, useCallback, useEffect, useState } from "react"
+import { MouseEvent, useCallback, useEffect, useRef, useState } from "react"
 import { StaticImageData } from 'next/image'
 
 import { test_script, test_script_answers } from "../../scripts/test_script"
@@ -22,6 +22,8 @@ import {
   MouseEventHandler
 } from './services'
 import { 
+  MetaData,
+  MetaDataDefault,
   SceneBackground,
   SceneCharacter
 } from '../../interfaces'
@@ -34,13 +36,18 @@ import {
   CheckFunction, 
   ActionSfxArray,
   ActionScriptArray,
-  SceneScript
+  SceneScript,
+  ActionScoreArray
 } from "../../types"
 
 import styles from './styles.module.css'
 
 //formally Ehhngine
 export const TextEngine = () => {
+  // alternative to localStorage for component lifetimes
+  // will use for score, but could hold anything
+  const metaData = useRef<MetaData>(MetaDataDefault)
+
   // TODO: Change this to a useReducer.
   const [scriptStep, setScriptStep] = useState<number>(0)
   const [script, setScript] = useState<SceneScript>(test_script)
@@ -138,7 +145,6 @@ export const TextEngine = () => {
           case ActionTypes.sfx:
             const actionSfxArray: ActionSfxArray = currentScriptStep as ActionSfxArray
             const audioVolumeString = localStorage.getItem("volume");
-            console.log(audioVolumeString)
             const audioVolume = audioVolumeString ? parseFloat(audioVolumeString) : 0.5;
             SFXService(`/sfx/${actionSfxArray[1]}`, audioVolume)
             SetScriptStep(setScriptStep, "increment")
@@ -156,26 +162,33 @@ export const TextEngine = () => {
             setSceneName(actionNameArray[1])
             SetScriptStep(setScriptStep, "increment")
             break
+          case ActionTypes.score:
+            const actionScoreArray: ActionScoreArray = currentScriptStep as ActionScoreArray
+            const scoreToAdd = actionScoreArray[1]
+            metaData.current.score += scoreToAdd
+            break
           case ActionTypes.endgame:
-            setPopupMessage(currentScriptStep[1])
+            const actionEndgameArray: ActionScoreArray = currentScriptStep as ActionScoreArray
+            const endgameString = actionEndgameArray[1]
+            setPopupMessage(`${endgameString} Score: ${metaData.current.score}`)
             setIsPopupVisible(true)
             break
-        case ActionTypes.amb:
-          const actionAmbArray: ActionSfxArray = currentScriptStep as ActionSfxArray
-          const ambientVolumeString = localStorage.getItem("volume");
-          const ambientVolume = ambientVolumeString ? parseFloat(ambientVolumeString) : 0.5;
-          AudioService(`/mp3/${actionAmbArray[1]}`, ambientVolume)
-          SetScriptStep(setScriptStep, "increment")
-          break
-        case ActionTypes.ramb:
-          StopAudioService()
-          SetScriptStep(setScriptStep, "increment")
-          break
-        default:
-            //This is to skip actions that don't exist either because of a typo or not removed from script.
+          case ActionTypes.amb:
+            const actionAmbArray: ActionSfxArray = currentScriptStep as ActionSfxArray
+            const ambientVolumeString = localStorage.getItem("volume");
+            const ambientVolume = ambientVolumeString ? parseFloat(ambientVolumeString) : 0.5;
+            AudioService(`/mp3/${actionAmbArray[1]}`, ambientVolume)
             SetScriptStep(setScriptStep, "increment")
             break
-        }
+          case ActionTypes.ramb:
+            StopAudioService()
+            SetScriptStep(setScriptStep, "increment")
+            break
+          default:
+              //This is to skip actions that don't exist either because of a typo or not removed from script.
+              SetScriptStep(setScriptStep, "increment")
+              break
+          }
       } else {
         const text = currentScriptStep as string
         const playerName = localStorage.getItem("playerName") ?? "Player"
@@ -211,7 +224,6 @@ export const TextEngine = () => {
       />
       <EndGamePopup
         isVisible={isPopupVisible}
-        onClose={() => setIsPopupVisible(false)}
         message={popupMessage}
       />
     </div>

@@ -3,17 +3,15 @@ import styles from './styles.module.css';
 import { Button } from "../../../index";
 
 interface EndGamePopupProps {
-    isVisible: boolean;
-    onClose: () => void;
-    message: string;
+  isVisible: boolean;
+  message: string;
 }
 
 export const EndGamePopup = ({ 
-    isVisible,
-    onClose,
-    message 
+  isVisible,
+  message 
 }: EndGamePopupProps) => {
-  if (!isVisible) return null;
+  if (!isVisible) return null
 
   return (
     <div className={styles.popupContainer}>

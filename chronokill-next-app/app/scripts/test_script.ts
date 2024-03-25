@@ -100,6 +100,12 @@ export const test_script: SceneScript = [
 
   [ActionTypes.qa, "decision1", decision1],
 
+  [ActionTypes.check, () => test_script_answers.decision1 === decision1[0]],
+    [ActionTypes.score, 1],
+  [ActionTypes.check, () => test_script_answers.decision1 === decision1[1]],
+    [ActionTypes.score, -1],
+  [ActionTypes.rcheck],
+
   "Lets see what happens when we remove the background.",
 
   [ActionTypes.bg, undefined],
@@ -117,6 +123,14 @@ export const test_script: SceneScript = [
   "MEIOU?",
 
   [ActionTypes.qa, "decision2", decision2],
+
+  [ActionTypes.check, () => test_script_answers.decision2 === decision2[0]],
+    [ActionTypes.score, 1],
+  [ActionTypes.check, () => test_script_answers.decision2 === decision2[1]],
+    [ActionTypes.score, 2],
+  [ActionTypes.check, () => test_script_answers.decision2 === decision2[2]],
+    [ActionTypes.score, -2],
+  [ActionTypes.rcheck],
 
   "Time to conditionally render some text.",
 
@@ -154,10 +168,9 @@ export const test_script: SceneScript = [
   "That's it for the test script.",
   "ENDUT! HOCH HECH!",
 
-  //[ActionTypes.endgame, "End"],
-  //uncomment to test end popup!
+  [ActionTypes.endgame, "This is the end..."]
 
-  [ActionTypes.script, monday_script, monday_script_answers]
+  // [ActionTypes.script, monday_script, monday_script_answers]
 ]
 
 export default test_script

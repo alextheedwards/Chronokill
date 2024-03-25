@@ -4,6 +4,8 @@ import { ActionDecisionArray } from './ActionDecisionArray'
 import { ActionCheckArray } from './ActionCheckArray'
 import { ActionSfxArray } from './ActionSfxArray'
 import { ActionScriptArray } from './ActionScriptArray'
+import { ActionScoreArray } from './ActionScoreArray'
+import { ActionEndgameArray } from './ActionEndgameArray'
 
 export type SceneScript = ( 
   string | 
@@ -12,7 +14,9 @@ export type SceneScript = (
   ActionDecisionArray |
   ActionCheckArray |
   ActionSfxArray |
-  ActionScriptArray
+  ActionScriptArray |
+  ActionScoreArray |
+  ActionEndgameArray
 )[]
 
 export default SceneScript
