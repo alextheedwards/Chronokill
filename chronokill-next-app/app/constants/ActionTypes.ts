@@ -10,7 +10,9 @@ export enum ActionTypes {
   rcheck = "rcheck", // remove conditional rendering
   script = "script", // change script
   name = "name", // add textpanel title
-  endgame = "endgame" //end game popup
+  endgame = "endgame", //end game popup
+  amb = "amb", // add ambient sounds
+  ramb = "ramb" // remove ambient sounds
 }
 
 export default ActionTypes

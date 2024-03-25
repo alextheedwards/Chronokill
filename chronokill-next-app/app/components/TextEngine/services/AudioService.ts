@@ -1,16 +1,24 @@
+let currentAudio: HTMLAudioElement | null = null;
 
-export const AudioService = (sceneSfx: string, volume: number) => {
-  const audio = new Audio(sceneSfx)
-  audio.volume = volume
+export const AudioService = (sceneMp3: string, volume: number) => {
+    const audio = new Audio(sceneMp3)
+    audio.volume = volume
+    audio.loop = true
 
-  const onPlayEnded = () => {
-    audio.pause()
-    audio.src = ''
-    console.log("Audio cleared!")
-  }
-  
-  audio.onended = onPlayEnded
-  audio.play()
-}
+    audio.play();
 
-export default AudioService
+    // Set the current audio object
+    currentAudio = audio;
+
+    return currentAudio;
+};
+
+export const StopAudioService = () => {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.src = '';
+        console.log("Audio stopped!");
+    } else {
+        console.log("No audio is playing.");
+    }
+};

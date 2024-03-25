@@ -12,10 +12,12 @@ import {
   BackgroundImage,
   EndGamePopup
 } from './components'
-import { 
+import {
+  AudioService,
   SetScriptStep, 
   SetSceneCharacters,
-  AudioService,
+  SFXService,
+  StopAudioService,
   KeyboardEventHandler,
   MouseEventHandler
 } from './services'
@@ -138,7 +140,7 @@ export const TextEngine = () => {
             const audioVolumeString = localStorage.getItem("volume");
             console.log(audioVolumeString)
             const audioVolume = audioVolumeString ? parseFloat(audioVolumeString) : 0.5;
-            AudioService(`/sfx/${actionSfxArray[1]}`, audioVolume)
+            SFXService(`/sfx/${actionSfxArray[1]}`, audioVolume)
             SetScriptStep(setScriptStep, "increment")
             break
           case ActionTypes.script:
@@ -155,12 +157,19 @@ export const TextEngine = () => {
             SetScriptStep(setScriptStep, "increment")
             break
           case ActionTypes.endgame:
-          setPopupMessage(currentScriptStep[1])
-          setIsPopupVisible(true)
+            setPopupMessage(currentScriptStep[1])
+            setIsPopupVisible(true)
+            break
+        case ActionTypes.amb:
+          const actionAmbArray: ActionSfxArray = currentScriptStep as ActionSfxArray
+          const ambientVolumeString = localStorage.getItem("volume");
+          const ambientVolume = ambientVolumeString ? parseFloat(ambientVolumeString) : 0.5;
+          AudioService(`/mp3/${actionAmbArray[1]}`, ambientVolume)
+          SetScriptStep(setScriptStep, "increment")
           break
-        case ActionTypes.endgame:
-          setPopupMessage(currentScriptStep[1])
-          setIsPopupVisible(true)
+        case ActionTypes.ramb:
+          StopAudioService()
+          SetScriptStep(setScriptStep, "increment")
           break
         default:
             //This is to skip actions that don't exist either because of a typo or not removed from script.

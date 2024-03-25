@@ -80,6 +80,7 @@ export const test_script: SceneScript = [
   "First things first, lets load a background.",
 
   [ActionTypes.bg, placeholderBg],
+  [ActionTypes.amb, "office-ambience-24734.mp3"],
 
   "You're finally awake..",
   "Let me tell you my name.",
@@ -102,6 +103,7 @@ export const test_script: SceneScript = [
   "Lets see what happens when we remove the background.",
 
   [ActionTypes.bg, undefined],
+  [ActionTypes.ramb],
 
   "...",
   "V O I D",
