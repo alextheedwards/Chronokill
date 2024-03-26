@@ -3,7 +3,12 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from "react"
 import { StaticImageData } from 'next/image'
 
-import { monday_script, monday_script_answers } from "../../scripts/monday_script"
+import { 
+  test_script, test_script_answers,
+  monday_script, monday_script_answers,
+  wednesday_script, wednesday_script_answers,
+  thursday_script, thursday_script_answers
+} from "../../scripts/"
 import { ActionTypes } from '../../constants'
 import { 
   TextPanel, 
@@ -45,7 +50,7 @@ import styles from './styles.module.css'
 //formally Ehhngine
 export const TextEngine = () => {
   // alternative to localStorage for component lifetimes
-  // will use for score, but could hold anything
+  // unused after last score changes, but still has future use
   const metaData = useRef<MetaData>(MetaDataDefault)
 
   // TODO: Change this to a useReducer.
@@ -82,7 +87,7 @@ export const TextEngine = () => {
     } else {
       MouseEventHandler(setScriptStep, event, disable)
     }
-  },[sceneDecision, isTextRendering])
+  },[sceneDecision, isTextRendering, isPopupVisible])
 
   useEffect(() => {
     window.addEventListener('keydown', UserEventListener)
@@ -91,15 +96,6 @@ export const TextEngine = () => {
       window.removeEventListener('keydown', UserEventListener)
     }
   }, [UserEventListener])
-
-
-  useEffect(() => {
-    if (script.length === 0 && Object.keys(scriptAnswers).length === 0) {
-      setScript(monday_script)
-      setScriptAnswers(monday_script_answers)
-      setScriptStep(0)
-    }
-  }, [])
 
   useEffect(() => {
     if (script.length === 0) return
@@ -120,7 +116,7 @@ export const TextEngine = () => {
           SetScriptStep(setScriptStep, "increment")
           return
       }
-    }   
+    }
 
     // standard engine actions
     if (!scriptCheck || scriptCheck()) {
@@ -174,18 +170,19 @@ export const TextEngine = () => {
           case ActionTypes.score:
             const actionScoreArray: ActionScoreArray = currentScriptStep as ActionScoreArray
             const scoreToAdd = actionScoreArray[1]
-            metaData.current.score += scoreToAdd
+            scriptAnswers["score"] += scoreToAdd
+            SetScriptStep(setScriptStep, "increment")
             break
           case ActionTypes.endgame:
             const actionEndgameArray: ActionScoreArray = currentScriptStep as ActionScoreArray
             const endgameString = actionEndgameArray[1]
-            setPopupMessage(`${endgameString} Score: ${metaData.current.score}`)
+            setPopupMessage(`${endgameString} Score: ${scriptAnswers.score}`)
             setIsPopupVisible(true)
             break
           case ActionTypes.amb:
             const actionAmbArray: ActionSfxArray = currentScriptStep as ActionSfxArray
             const ambientVolumeString = localStorage.getItem("volume");
-            const ambientVolume = ambientVolumeString ? parseFloat(ambientVolumeString) : 0.5;
+            const ambientVolume = ambientVolumeString ? parseFloat(ambientVolumeString) : 0.5
             AudioService(`/mp3/${actionAmbArray[1]}`, ambientVolume)
             SetScriptStep(setScriptStep, "increment")
             break
@@ -194,20 +191,23 @@ export const TextEngine = () => {
             SetScriptStep(setScriptStep, "increment")
             break
           default:
-              //This is to skip actions that don't exist either because of a typo or not removed from script.
-              SetScriptStep(setScriptStep, "increment")
-              break
+            //This is to skip actions that don't exist either because of a typo or not removed from script.
+            SetScriptStep(setScriptStep, "increment")
+            break
           }
       } else {
-        const text = currentScriptStep as string
+        let replacedText = currentScriptStep as string
         const playerName = localStorage.getItem("playerName") ?? "Player"
-        const replacedText = text.replace(/<PlayerName>/g, playerName)
+        const score = scriptAnswers.score.toString()
+        replacedText = replacedText.replace(/<Score>/g, score)
+        replacedText = replacedText.replace(/<PlayerName>/g, playerName)
+        
         setSceneText(replacedText)
       }
     } else {
       SetScriptStep(setScriptStep, "increment")
     }
-  }, [script, scriptStep])
+  }, [script, scriptStep, scriptAnswers])
 
   return (
     <div className={styles.textEngineWrapper} onClick={UserEventListener} >

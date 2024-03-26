@@ -47,7 +47,7 @@ export const TextPanel = ({
     } else {
       setIsTextRendering(false)
     }
-}, [index, displayText])
+}, [index, displayText, isSkippingTextRendering, setIsSkippingTextRendering, setIsTextRendering])
 
 const titleElement = !sceneName?.name
   ? null

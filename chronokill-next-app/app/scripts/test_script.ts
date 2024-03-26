@@ -28,7 +28,7 @@ const TestCharDupe: SceneCharacter = {
 }
 
 
-// decision answer declarations
+// decision declarations
 const decision1: string[] = [
   "Yes",
   "No"
@@ -44,7 +44,8 @@ const decision2: string[] = [
 // answers object
 export const test_script_answers: any = {
   decision1: undefined,
-  decision2: undefined
+  decision2: undefined,
+  score: 0
 }
 
 
@@ -132,6 +133,14 @@ export const test_script: SceneScript = [
     [ActionTypes.score, -2],
   [ActionTypes.rcheck],
 
+  "Score checking",
+
+  [ActionTypes.check, () => test_script_answers.score > 0],
+    `The score of <Score> was greater than 0.`,
+  [ActionTypes.check, () => test_script_answers.score <= 0],
+    `The score of <Score> was less than or equal to 0.`,
+  [ActionTypes.rcheck],
+
   "Time to conditionally render some text.",
 
   [ActionTypes.check, () => test_script_answers.decision1 === decision1[0]],
@@ -169,8 +178,6 @@ export const test_script: SceneScript = [
   "ENDUT! HOCH HECH!",
 
   [ActionTypes.endgame, "This is the end..."]
-
-  // [ActionTypes.script, monday_script, monday_script_answers]
 ]
 
 export default test_script

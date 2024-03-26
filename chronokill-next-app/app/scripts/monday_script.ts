@@ -14,6 +14,7 @@ import imgSimon from '../../public/actors/simon.png'
 import imgRebecca from '../../public/actors/rebecca.png'
 import imgOscar from '../../public/actors/oscar.png'
 
+// character declarations
 const ActorBill: SceneCharacter = {
   name: "Bill",
   color: "#ff0000",
@@ -42,6 +43,7 @@ const ActorOscar: SceneCharacter = {
   styles: ["centre-right"]
 }
 
+// decision declarations
 const decision1: string[] = [
   "Plug it in",
   "Give the USB to reception",
@@ -56,7 +58,8 @@ const decision2: string[] = [
 
 export const monday_script_answers: any = {
   decision1: undefined,
-  decision2: undefined
+  decision2: undefined,
+  score: 0
 }
 
 export const monday_script: SceneScript = [

@@ -1,7 +1,7 @@
 import { SceneScript } from '../types'
 import { SceneCharacter } from '../interfaces'
 import { ActionTypes } from '../constants'
-import { friday_script} from './friday_script'
+import { friday_script, friday_script_answers} from './friday_script'
 
 import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
@@ -13,6 +13,7 @@ import imgSimon from '../../public/actors/simon.png'
 import imgRebecca from '../../public/actors/rebecca.png'
 import imgOscar from '../../public/actors/oscar.png'
   
+  // character declarations
   const ActorSimon: SceneCharacter = {
     name: "Simon",
     color: "#ff0000",
@@ -41,6 +42,7 @@ import imgOscar from '../../public/actors/oscar.png'
     styles: ["centre-left"]
   }
 
+  // decision declarations
   const decision1: string[] = [
     "Focus On Response",//+
     "Focus On Consequences",//-
@@ -54,7 +56,8 @@ import imgOscar from '../../public/actors/oscar.png'
 
   export const thursday_script_answers: any = {
     decision1: undefined,
-    decision2: undefined
+    decision2: undefined,
+    score: 0
   }
 
   export const thursday_script: SceneScript = [
@@ -126,7 +129,7 @@ import imgOscar from '../../public/actors/oscar.png'
     [ActionTypes.name, ActorSimon],
     "Well, that might just be the end of it. Hopefully tomorrow we'll hear more about how everything went. See you then.",
 
-    [ActionTypes.script, friday_script]
+    [ActionTypes.script, friday_script, friday_script_answers]
   ]
 
   export default thursday_script

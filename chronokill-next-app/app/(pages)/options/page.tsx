@@ -3,7 +3,7 @@ import { useState, useEffect, ChangeEvent } from "react"
 import { Button, Header } from "../../components"
 import styles from "./styles.module.css"
 
-export const Options = () => {
+const Options = () => {
   const [mute, setMute] = useState(false) 
   const [previousVolume, setPreviousVolume] = useState<number>(0.0) 
   const [volume, setVolume] = useState(0.5)
