@@ -44,6 +44,12 @@ Backgrounds:
 <a href="https://www.freepik.com/free-vector/cozy-cafe-with-modern-design-illustration_3296507.htm">Lunch Room (katemangostar)</a>
 <a href="https://www.freepik.com/free-vector/front-view-long-table-office-video-conferencing-background_9462454.htm">Boardroom (pikisuperstar)</a>
 
+Sounds:
+<a href="https://filmcow.itch.io/filmcow-sfx">FilmCow Royalty Free Sound Effects Library</a>
+<a href="https://pixabay.com/sound-effects/office-ambience-24734/">Ofice Ambient Sound</a>
+<a href="https://www.soundsnap.com/computer_fan_2">Computer Fan</a>
+<a href="https://www.soundsnap.com/smartphone_notification_synth_chimes_four_alterations_original_vintage_outdated_and_modern_phone_13">Notification Sound</a>
+
 ## Licence
 
 Licenced under GNU GPL v3

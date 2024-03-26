@@ -3,15 +3,11 @@ import { SceneCharacter } from '../interfaces'
 import { ActionTypes } from '../constants'
 import { friday_script, friday_script_answers} from './friday_script'
 
-import bgReception from '../../public/backgrounds/reception.png'
 import bgPlayerDesk from '../../public/backgrounds/officeDesk1.png'
-import bgBossOffice from '../../public/backgrounds/bossOffice.jpg'
 import bgBoardroom from '../../public/backgrounds/boardroom.png'
 
 import imgBill from '../../public/actors/bill.png'
 import imgSimon from '../../public/actors/simon.png'
-import imgRebecca from '../../public/actors/rebecca.png'
-import imgOscar from '../../public/actors/oscar.png'
   
   // character declarations
   const ActorSimon: SceneCharacter = {
@@ -19,20 +15,6 @@ import imgOscar from '../../public/actors/oscar.png'
     color: "#ff0000",
     image: imgSimon,
     styles: ["centre-right"]
-  }
-  
-  const ActorOscar: SceneCharacter = {
-    name: "Oscar",
-    color: "#ff0000",
-    image: imgOscar,
-    styles: ["centre-right"]
-  }  
-  
-  const ActorRebecca: SceneCharacter = {
-    name: "Rebecca",
-    color: "#ff0000",
-    image: imgRebecca,
-    styles: []
   }
 
   const ActorBill: SceneCharacter = {
@@ -66,18 +48,20 @@ import imgOscar from '../../public/actors/oscar.png'
     ". . .",
 
     [ActionTypes.bg, bgPlayerDesk],
+    [ActionTypes.amb, "office-ambience-24734.mp3"],
     [ActionTypes.char, ActorSimon],
     [ActionTypes.name, undefined],
     "On arrival, Simon sits expecting you.", //NARRATOR
     [ActionTypes.name, ActorSimon],
     "Well, it took me until 4am, but the attack has been completely neutralised. The work's not all done yet. Still. Come on into the boardroom, we have some stuff to run by you.",
+    [ActionTypes.ramb],
 
-    [ActionTypes.bg, bgBoardroom], 
+    [ActionTypes.bg, bgBoardroom],
     [ActionTypes.char, ActorSimon],
     [ActionTypes.char, ActorBill],
     [ActionTypes.name, ActorBill],
     "We're creating a press release for the attack but can't decide between these three options.",
-    "“Focus on response” would emphasise all we've done to respond to the attack. It would admit to the damages and promise more preventative measures but wouldn't detail the consequences.", 
+    "“Focus on response” would emphasise all we've done to respond to the attack. It would admit to the damages and promise more preventative measures but wouldn't detail the consequences.",
     "“Focus on consequences” would be more honest, mentioning the types of information leaked. The public could take it either way, but it could lead to more people taking this kind of thing seriously.",
     "“No accountability” is a real gamble. If we pull it off, it will do the least damage to Chronosoft's reputation, but it could easily backfire on us.",
     "Which press release should we use?", //options for press release,
@@ -108,6 +92,7 @@ import imgOscar from '../../public/actors/oscar.png'
     [ActionTypes.rcheck],
     [ActionTypes.rchar, ActorBill],
     [ActionTypes.bg, bgPlayerDesk],
+    [ActionTypes.amb, "office-ambience-24734.mp3"],
     [ActionTypes.char, ActorSimon],
     [ActionTypes.name, ActorSimon],
     "This has been expensive, and we're even more vulnerable to cyber-attacks now. We need some preventative measures, but the budget is limited, and we can only afford to implement one right now. What should it be? ",
@@ -128,6 +113,8 @@ import imgOscar from '../../public/actors/oscar.png'
     [ActionTypes.rcheck],
     [ActionTypes.name, ActorSimon],
     "Well, that might just be the end of it. Hopefully tomorrow we'll hear more about how everything went. See you then.",
+
+    [ActionTypes.ramb],
 
     [ActionTypes.script, friday_script, friday_script_answers]
   ]

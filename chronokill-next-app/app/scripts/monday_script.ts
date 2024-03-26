@@ -66,6 +66,7 @@ export const monday_script: SceneScript = [
   ". . .",
 
   [ActionTypes.bg, bgReception],
+  [ActionTypes.amb, "office-ambience-24734.mp3"],
   [ActionTypes.char, ActorRebecca],
 
   "You walk up to the receptionist and introduce yourself as a new Cyber Security intern.",
@@ -82,7 +83,7 @@ export const monday_script: SceneScript = [
 
   [ActionTypes.rchar, ActorRebecca],
   [ActionTypes.bg, bgPlayerDesk],
-  
+
   "So here's where the magic happens. This is Simon, he's the senior cyber specialist. I'll leave it to him to explain what your role is.",
 
   [ActionTypes.rchar, ActorBill],
@@ -91,15 +92,19 @@ export const monday_script: SceneScript = [
   "Hey, how're you doing? I'm glad they finally hired another consultant; things have been difficult these past few months. We haven't had a proper attack in a while, but the staff just won't listen to the training materials. The last phishing test alone had a failure rate of 20%. We need you to help encourage better practices here.",
   "First things first though, let me show you around.",
 
+  [ActionTypes.ramb],
   [ActionTypes.bg, undefined],
   [ActionTypes.name, undefined],
   ". . .",
 
   [ActionTypes.bg, bgServerRoom],
+  [ActionTypes.amb, "computer_fan_2.wav"],
   [ActionTypes.name, ActorSimon],
   "So this is our server room, the heart of it all. We store a lot of sensitive data on here, so access is restricted to us. After an earlier restructure, managing employee access to stuff like this is our responsibility, so look forward to that.",
+  [ActionTypes.ramb],
 
   [ActionTypes.bg, bgReception],
+  [ActionTypes.amb, "office-ambience-24734.mp3"],
 
   "Here's reception.  Rebecca here organises all sorts of things.",
 
@@ -115,10 +120,12 @@ export const monday_script: SceneScript = [
   "So, the business started focusing on cybersecurity awareness recently after an attack a few months ago - some emails were leaked after an employee used a weak password. All things considered, it wasn't that bad, but it really shook the executives up, which led them to hire you.",
 
   [ActionTypes.bg, undefined],
+  [ActionTypes.ramb],
   [ActionTypes.name, undefined],
   ". . .",
 
   [ActionTypes.bg, bgLunchRoom],
+  [ActionTypes.amb, "office-ambience-24734.mp3"],
   [ActionTypes.name, ActorSimon],
   "…And that's lunch. I'll let you get talking to the others, we'll meet back in an hour.",
 
@@ -166,7 +173,7 @@ export const monday_script: SceneScript = [
 
   [ActionTypes.name, undefined],
   "Rebecca plugs the USB into her computer. You notice a couple command prompt windows open and immediately close. The USB contains one file, README.pdf. Rebecca opens it.", //NARRATOR
-  
+
   [ActionTypes.name, ActorRebecca],
   "That's weird, the file is blank. I'll keep the stick here in case anyone comes looking for it.",
 
@@ -190,15 +197,18 @@ export const monday_script: SceneScript = [
   [ActionTypes.rcheck],
 
   [ActionTypes.bg, undefined],
+  [ActionTypes.ramb],
   [ActionTypes.name, undefined],
   "Later...",
 
   [ActionTypes.bg, bgPlayerDesk],
+  [ActionTypes.amb, "office-ambience-24734.mp3"],
   [ActionTypes.char, ActorSimon],
   [ActionTypes.name, ActorSimon],
   "…So that's the firewall policy as we have it now, but I was thinking to update it with a-",
 
   [ActionTypes.name, undefined],
+  [ActionTypes.sfx, "notification.wav"],
   "You get a notification from Oscar about a suspicious email. You and Simon walk around to their desk.",
 
   [ActionTypes.bg, bgOscarDesk],
@@ -244,6 +254,8 @@ export const monday_script: SceneScript = [
   [ActionTypes.name, ActorSimon],
   "There you go, your first day and you've already seen two attempts to breach our network.",
   "We could have more to deal with tomorrow, but that's us for today. Have a nice evening, we'll regroup tomorrow morning.",
+
+  [ActionTypes.ramb],
 
   [ActionTypes.script, tuesday_script, tuesday_script_answers]
 ]

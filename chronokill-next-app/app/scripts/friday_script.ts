@@ -39,6 +39,7 @@ export const friday_script: SceneScript = [
   ". . .",
 
   ["bg", bgPlayerDesk],
+  [ActionTypes.amb, "office-ambience-24734.mp3"],
   "You show up to work and sit at your desk. ",//NARRATOR
 
   ["char", ActorSimon],
@@ -50,6 +51,7 @@ export const friday_script: SceneScript = [
   [ActionTypes.rchar, ActorSimon],
   [ActionTypes.char, ActorBill],
   ["bg", bgBoardroom],
+  [ActionTypes.ramb],
   [ActionTypes.name, ActorBill],
   "Thanks for coming. I wanted to talk to you about your performance this week.",
 

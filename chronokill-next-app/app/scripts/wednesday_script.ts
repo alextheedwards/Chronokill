@@ -19,7 +19,7 @@ const ActorSimon: SceneCharacter = {
   name: "Simon",
   color: "#ff0000",
   image: imgSimon,
-  styles: ["centre-right"]
+  styles: ["centre-left", "mirror"]
 }
 
 const ActorOscar: SceneCharacter = {
@@ -33,7 +33,7 @@ const ActorBill: SceneCharacter = {
   name: "Bill",
   color: "#ff0000",
   image: imgBill,
-  styles: ["centre-left"]
+  styles: ["centre-right", "mirror"]
 }
 
 const ActorRebecca: SceneCharacter = {
@@ -64,12 +64,15 @@ export const wednesday_script: SceneScript = [
   ". . .",
 
   [ActionTypes.bg, bgReception],
+  [ActionTypes.amb, "office-ambience-24734.mp3"],
 
   [ActionTypes.check, () => tuesday_script_answers.decision2 === "Guest passes"],
+  [ActionTypes.sfx, "door open 3.wav"],
   "You arrive at the office and scan your guest pass.", //NARRATOR
 
   [ActionTypes.check, () => tuesday_script_answers.decision2 === "Manually verify access"],
   [ActionTypes.char, ActorRebecca],
+  [ActionTypes.sfx, "button assorted 99.wav"],
   "You arrive at the office. Rebecca buzzes you in.",
   [ActionTypes.rchar, ActorRebecca],
   [ActionTypes.rcheck],
@@ -100,13 +103,14 @@ export const wednesday_script: SceneScript = [
   [ActionTypes.rcheck],
   [ActionTypes.name, undefined],
   "You try to think of a way out of this.",//NARRATOR
-  
+
   [ActionTypes.qa, "decision1", decision1],
   [ActionTypes.rchar, ActorOscar],
   [ActionTypes.rchar, ActorSimon],
 
   [ActionTypes.check, () => wednesday_script_answers.decision1 === decision1[0]], //inform stakeholders
   [ActionTypes.bg, bgBossOffice],
+  [ActionTypes.ramb],
   [ActionTypes.char, ActorBill],
   [ActionTypes.char, ActorSimon],
   [ActionTypes.name, undefined],
@@ -120,6 +124,7 @@ export const wednesday_script: SceneScript = [
 
   [ActionTypes.check, () => wednesday_script_answers.decision1 === decision1[1]], //cover up attack
   [ActionTypes.bg, bgBossOffice],
+  [ActionTypes.ramb],
   [ActionTypes.char, ActorBill],
   [ActionTypes.char, ActorSimon],
   [ActionTypes.name, undefined],
@@ -131,11 +136,13 @@ export const wednesday_script: SceneScript = [
 
   //FADE TO RECEPTION
   [ActionTypes.bg, bgReception],
+  [ActionTypes.amb, "office-ambience-24734.mp3"],
   [ActionTypes.char, ActorRebecca],
   [ActionTypes.name, ActorRebecca],
   "Um... The police are here.",
   [ActionTypes.name, undefined],
   "ARREST MADE: Name: <PlayerName>\nCrime: Financial Misconduct, Data Protection.\nCurrently awaiting trial.",
+  [ActionTypes.ramb],
 
   //INSTAFAIL
   [ActionTypes.endgame, "Game Over: You were arrested!"],
@@ -152,6 +159,7 @@ export const wednesday_script: SceneScript = [
   [ActionTypes.char, ActorSimon],
   [ActionTypes.char, ActorBill],
   [ActionTypes.bg, bgBossOffice],
+  [ActionTypes.ramb],
   "Simon gives Bill the following statement to announce:",//NARRATOR
   "Chronosoft's security measures have been breached by a ransomware attack. Company records, employee personal information and more are expected to leak. More to announce soon. ",
   [ActionTypes.name, ActorBill],
@@ -178,6 +186,7 @@ export const wednesday_script: SceneScript = [
   [ActionTypes.check, () => wednesday_script_answers.decision2 === decision2[0]], //yes
   [ActionTypes.name, undefined],
   "Thinking about what this is costing the company leads you to agree with him. You reconnect Bill's computer.",//NARRATOR
+  [ActionTypes.amb, "computer_fan_2.wav"],
 
   [ActionTypes.rchar, ActorBill],
 
@@ -193,6 +202,8 @@ export const wednesday_script: SceneScript = [
   [ActionTypes.char, ActorSimon],
   [ActionTypes.name, ActorSimon],
   "I'll need to pull an all-nighter tonight to make sure we're okay for tomorrow. See you then.",
+
+  [ActionTypes.ramb],
 
   [ActionTypes.script, thursday_script, thursday_script_answers]
 ]
