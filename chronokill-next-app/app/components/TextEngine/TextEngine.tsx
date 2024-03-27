@@ -90,6 +90,11 @@ export const TextEngine = () => {
   },[sceneDecision, isTextRendering, isPopupVisible])
 
   useEffect(() => {
+    monday_script_answers.score = 0
+    setScriptAnswers(monday_script_answers)
+  }, [])
+
+  useEffect(() => {
     window.addEventListener('keydown', UserEventListener)
 
     return () => {
@@ -156,9 +161,11 @@ export const TextEngine = () => {
             break
           case ActionTypes.script:
             const actionScriptArray: ActionScriptArray = currentScriptStep as ActionScriptArray
+            const differentScriptAnswers = actionScriptArray[2]
+            differentScriptAnswers.score = 0
             setIsShowingOverlay(true)
             setScript(actionScriptArray[1])
-            setScriptAnswers(actionScriptArray[2])
+            setScriptAnswers(differentScriptAnswers)
             SetScriptStep(setScriptStep, "reset")
             SetSceneCharacters(setSceneCharacters, "clear")
             break

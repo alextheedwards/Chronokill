@@ -160,13 +160,13 @@ export const friday_script: SceneScript = [
     "To prevent further attacks, you recommended we change everyone's password... Was this a joke?",
 
   //WIN STATE
-  [ActionTypes.check, () => friday_script_answers.score >= 7],
+  [ActionTypes.check, () => friday_script_answers.score >= 5],
     "This was a difficult first week for you, I'm sure. You had to make some difficult decisions, but we came out on top in the end. We'd be happy to keep you on to help prevent any further attacks.",
     "Now get back to work.",
     [ActionTypes.endgame, "Game over, you won!"],
 
   //FAIL STATE
-  [ActionTypes.check, () => friday_script_answers.score < 7],
+  [ActionTypes.check, () => friday_script_answers.score < 5],
     "The decisions you've made over the past week have tanked Chronosoft's reputation. Now we have to bring in an external cybersecurity company to clean things up and save face. Thankfully, you're still on probation. You're fired.",
     [ActionTypes.endgame, "Game over, you lost!"],
 
