@@ -1,5 +1,7 @@
 # Chronokill
 
+<a href="http://chronokill.se2324team01.ada.hal.davecutting.uk/">Play Chronokill (Hosted on Rancher)</a>
+
 A chronological role based game cyber-security education game.
 
 Developed as our final year project at Queen's University, Belfast. Driven by a desire to help reduce the number of cyber attacks that occur as a result of user error we looked to see how we could educate people in an engaging and interactive manner.
